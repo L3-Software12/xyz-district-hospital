@@ -1,0 +1,142 @@
+/* ================= HEADER ================= */
+header{
+    background:linear-gradient(90deg,#0066cc,#0099ff);
+    color:white;
+    padding:12px 15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* LOGO */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.logo img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:white;
+}
+
+.logo h1{
+    font-size:18px;
+    margin:0;
+}
+
+/* NAV */
+nav{
+    margin-top:10px;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    padding:0;
+    margin:0;
+}
+
+/* LINKS */
+.nav-links li{
+    position:relative;
+}
+
+.nav-links a{
+    display:block;
+    text-decoration:none;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.12);
+    font-size:13px;
+    transition:0.3s;
+    white-space:nowrap;
+}
+
+.nav-links a:hover{
+    background:white;
+    color:#0066cc;
+}
+
+/* DROPDOWN */
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    top:38px;
+    left:0;
+    background:white;
+    min-width:160px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    z-index:100;
+}
+
+.dropdown-menu li a{
+    color:#333;
+    background:white;
+    padding:10px;
+    font-size:13px;
+}
+
+.dropdown-menu li a:hover{
+    background:#f0f8ff;
+}
+
+.dropdown:hover .dropdown-menu{
+    display:block;
+}
+
+/* ================= FOOTER ================= */
+.footer{
+    background:#0b3a82;
+    color:white;
+    padding:30px 15px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.footer-box h3{
+    color:#00d4ff;
+    margin-bottom:8px;
+    font-size:16px;
+}
+
+.footer-box p,
+.footer-box a{
+    font-size:13px;
+    color:#e5e7eb;
+    text-decoration:none;
+    line-height:1.5;
+}
+
+.footer-box a:hover{
+    color:#00ffcc;
+}
+
+.map iframe{
+    width:100%;
+    height:130px;
+    border-radius:10px;
+    border:none;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:15px;
+    padding-top:10px;
+    border-top:1px solid rgba(255,255,255,0.2);
+    font-size:12px;
+    color:#cbd5e1;
+}

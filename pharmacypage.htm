@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>XYZ District Hospital System</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+ <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleheader&footer.css">
+     <!-- LINK EXTERNAL in pharmacypage CSS -->
+    <link rel="stylesheet" href="style-for-pharmacypage.css">
+     <!-- LINK EXTERNAL CSS FOR DARKMODE  -->
+        <link rel="stylesheet" href="style-for-darkmode.css">
+<style>
+/* =========================
+   MEDICINE SECTION
+========================= */
+
+.medicine-section{
+padding:60px 20px;
+background:#f5f9ff;
+text-align:center;
+}
+
+.medicine-section h2{
+font-size:35px;
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+.medicine-section p{
+color:#555;
+margin-bottom:40px;
+}
+
+/* CONTAINER */
+.medicine-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
+}
+
+/* CARD */
+.medicine-card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+transition:0.3s;
+padding-bottom:20px;
+}
+
+.medicine-card:hover{
+transform:translateY(-8px);
+}
+
+/* IMAGE */
+.medicine-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+/* TITLE */
+.medicine-card h3{
+margin-top:15px;
+font-size:24px;
+color:#0d6efd;
+}
+
+/* TEXT */
+.medicine-card p{
+padding:0 15px;
+margin-top:10px;
+line-height:1.6;
+}
+
+/* BUTTON */
+.medicine-card button{
+margin-top:15px;
+padding:10px 18px;
+border:none;
+background:#0d6efd;
+color:white;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.medicine-card button:hover{
+background:#084298;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="logos.png">
+        <h1>Welcome to XYZ District Hospital-Rwanda</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicespage.html">Services</a></li>
+            <li><a href="pharmacypage.htm" class="active">Pharmacy</a></li>
+            <li><a href="Health-Tips.html">Health Tips</a></li>
+            <li><a href="doctorpage.html">Doctors</a></li>
+
+            <li class="dropdown">
+                <a href="book-appointment.html">Appointment</a>
+                
+            </li>
+
+            <li><a href="login-page.html">Login</a></li>
+            <li><a href="contant-page.html">Contact</a></li>
+        </ul>
+    </nav>
+
+        </ul>
+    </nav>
+  <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+</header>
+
+<section class="plants-section">
+
+<h2>🌿 Medicinal Plants</h2>
+<p>Natural healing plants used in traditional and modern medicine.</p>
+
+
+<div class="plants-container">
+
+    <!-- PLANT 1 -->
+    <div class="plant-card">
+        <img src="ramusin.jpg" alt="Ramusin Plant">
+        <h3>Ramusin Plant</h3>
+        <p>
+            Used in traditional medicine to treat fever, stomach pain, and infections.
+            Known for its natural healing properties and immunity boosting effects.
+        </p>
+      <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+        <button style="color: hsl(216, 16%, 94%);background-color: #0d6efd;">Learn More →
+
+        </button></a>
+    </div>
+
+    <!-- PLANT 2 -->
+    <div class="plant-card">
+        <img src="inside.jpg" alt="Healing Plant">
+        <h3>Cures Herbal Plant</h3>
+        <p>
+            A powerful medicinal plant used for detoxification, wound healing,
+            and boosting body strength naturally.
+        </p>
+     <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+        <button  style="color: hsl(216, 16%, 94%);background-color: #0d6efd;">Learn More →
+
+        </button>
+    </a>
+    </div>
+
+    <!-- EXTRA PLANT (ADDED) -->
+    <div class="plant-card">
+        <img src="stock.jpg" alt="Natural Medicine">
+        <h3>Aloe Vera Plant</h3>
+        <p>
+            Helps in skin healing, burns treatment, and improving digestion health.
+        </p>
+        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+            <button  style="color: hsl(216, 16%, 94%);background-color: #0d6efd;">Learn More →
+
+            </button></a>
+    </div>
+
+</div>
+
+</section>
+<!-- MEDICINES SECTION -->
+<section class="medicine-section">
+
+<h2>💊 Available Medicines</h2>
+<p>
+Find common medicines available at XYZ District Hospital Pharmacy.
+</p>
+
+<div class="medicine-container">
+
+    <!-- MEDICINE 1 -->
+    <div class="medicine-card">
+
+        <img src="paracetamol.jpg" alt="Paracetamol">
+
+        <h3>Paracetamol</h3>
+
+        <p>
+            Used to reduce fever and relieve pain such as headaches,
+            muscle pain, and flu symptoms.
+        </p>
+
+        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+            <button>View Details →</button>
+        </a>
+
+    </div>
+
+    <!-- MEDICINE 2 -->
+    <div class="medicine-card">
+
+        <img src="amoxicillin.jpg" alt="Amoxicillin">
+
+        <h3>Amoxicillin</h3>
+
+        <p>
+            Antibiotic medicine used to treat bacterial infections
+            like throat infection and pneumonia.
+        </p>
+
+        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+            <button>View Details →</button>
+        </a>
+
+    </div>
+
+    <!-- MEDICINE 3 -->
+    <div class="medicine-card">
+
+        <img src="Vitamin C.jpg" alt="Vitamin C">
+
+        <h3>Vitamin C</h3>
+
+        <p>
+            Helps improve body immunity and protects the body
+            against common infections.
+        </p>
+
+        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+            <button>View Details →</button>
+        </a>
+
+    </div>
+
+    <!-- MEDICINE 4 -->
+    <div class="medicine-card">
+
+        <img src="Cough Syrup.jpg" alt="Cough Syrup">
+
+        <h3>Cough Syrup</h3>
+
+        <p>
+            Used to treat dry cough, chest irritation,
+            and flu-related throat pain.
+        </p>
+
+        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
+            <button>View Details →</button>
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+ <!-- page content -->
+
+   <script src="javascript-of-darkmde.js"></script>
+   <!-- external javascript -->
+    <script src="pharmacy-tips.js"></script>
+   
+</body>
+</html>

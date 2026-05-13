@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-image: url("ramusin.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.container{
+    width:380px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.container h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#0d6efd;
+}
+
+.container input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.container button{
+    width:100%;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.link{
+    text-align:center;
+    margin-top:15px;
+}
+
+.link a{
+    text-decoration:none;
+    color:#0d6efd;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Create Account</h2>
+
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <input type="password" placeholder="Confirm Password">
+
+    <button onclick="registerUser()">Register</button>
+
+    <div class="link">
+        <a href="login-page.html">Back to Login</a>
+    </div>
+</div>
+<script>
+function registerUser(){
+    let inputs = document.querySelectorAll("input");
+
+    let name = inputs[0].value.trim();
+    let email = inputs[1].value.trim();
+    let username = inputs[2].value.trim();
+    let password = inputs[3].value.trim();
+    let confirm = inputs[4].value.trim();
+
+    // ✅ 1. EMPTY FIELDS
+    if(name === "" || email === "" || username === "" || password === "" || confirm === ""){
+        alert("All fields are required!");
+        return;
+    }
+
+    // ✅ 2. NAME VALIDATION
+    if(name.length < 3){
+        alert("Name must be at least 3 characters!");
+        return;
+    }
+
+    // ✅ 3. EMAIL VALIDATION
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if(!emailPattern.test(email)){
+        alert("Invalid email format!");
+        return;
+    }
+
+    // ✅ 4. USERNAME VALIDATION
+    if(username.length < 3){
+        alert("Username must be at least 3 characters!");
+        return;
+    }
+
+    // ✅ 5. PASSWORD VALIDATION
+    if(password.length < 4){
+        alert("Password must be at least 4 characters!");
+        return;
+    }
+
+    // ✅ 6. CONFIRM PASSWORD
+    if(password !== confirm){
+        alert("Passwords do not match!");
+        return;
+    }
+
+    // ✅ 7. LOCAL STORAGE CHECK
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let exist = users.find(u => u.username === username || u.email === email);
+    if(exist){
+        alert("User already exists!");
+        return;
+    }
+
+    // ✅ 8. SAVE USER
+    users.push({name,email,username,password});
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Registered successfully!");
+    window.location.href = "login-page.html";
+}
+</script>
+
+</body>
+</html>

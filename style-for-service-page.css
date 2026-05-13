@@ -1,0 +1,135 @@
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f4f8ff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f5f9ff;
+}
+
+<!-- end headers -- >
+
+/* HERO */
+.hero{
+    height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    background-size:cover;
+    background-position:center;
+}
+
+.hero h2{
+    font-size:45px;
+    background:rgba(0,0,0,0.5);
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:20px;
+    background:rgba(0,0,0,0.5);
+    padding:10px;
+    border-radius:10px;
+}
+
+.hero button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00cc66;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.hero button:hover{
+    background:#00994d;
+}
+
+/* ================= SERVICES SECTION ================= */
+.services{
+    padding:40px 20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.services h2{
+    text-align:center;
+    color:#0066cc;
+    margin-bottom:25px;
+}
+
+/* INFO ARTICLE */
+.info-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+}
+
+.info-card h3{
+    color:#0099ff;
+    margin-bottom:10px;
+}
+
+/* GRID */
+.department-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+/* ARTICLE BOX */
+.dept{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.dept h4{
+    color:#0066cc;
+    margin-bottom:10px;
+}
+
+.dept p{
+    font-size:14px;
+    color:#555;
+}
+
+/* HOVER EFFECT */
+.dept:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+    .services{
+        padding:20px 10px;
+    }
+
+    .info-card{
+        font-size:14px;
+    }
+}
+
+
+

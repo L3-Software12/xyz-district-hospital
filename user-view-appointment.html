@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Appointments</title>
+<link rel="icon" type="image" href="logos.PNG">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f4f7fb;
+padding:20px;
+}
+
+/* TOP */
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+flex-wrap:wrap;
+gap:10px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+background:#0d6efd;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* CARD */
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+overflow:auto;
+}
+
+/* SEARCH */
+.search-box{
+padding:10px;
+width:300px;
+max-width:100%;
+border-radius:10px;
+border:1px solid #ddd;
+outline:none;
+}
+
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+min-width:900px;
+margin-top:15px;
+background:white;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#0d6efd;
+color:white;
+}
+
+/* STATUS */
+.badge{
+padding:6px 10px;
+border-radius:8px;
+color:white;
+font-size:14px;
+font-weight:bold;
+}
+
+/* FEEDBACK */
+.feedback{
+background:#f1f5f9;
+padding:10px;
+border-radius:8px;
+font-size:14px;
+line-height:1.5;
+}
+
+/* EMPTY */
+.empty{
+text-align:center;
+padding:20px;
+color:gray;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+.top-bar{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.search-box{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+<div class="top-bar">
+
+<button class="back-btn" onclick="goBack()">
+⬅ Back to Dashboard
+</button>
+
+<input
+type="text"
+id="searchInput"
+class="search-box"
+placeholder="Search appointment..."
+onkeyup="searchAppointments()"
+>
+
+</div>
+
+<div class="card">
+
+<h2>My Appointments</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Department</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Time</th>
+<th>Status</th>
+<th>Doctor Seen</th>
+<th>Feedback</th>
+</tr>
+</thead>
+
+<tbody id="table"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+/* CHECK USER */
+let currentUser =
+localStorage.getItem("currentUser");
+
+if(!currentUser){
+
+window.location.href = "login-page.html";
+
+}
+
+/* LOAD APPOINTMENTS */
+function load(){
+
+let data =
+JSON.parse(localStorage.getItem("appointments")) || [];
+
+let rows = "";
+
+/* FILTER USER DATA */
+data.forEach(a=>{
+
+if(a.user === currentUser){
+
+rows += `
+
+<tr>
+
+<td>${a.name}</td>
+
+<td>${a.department}</td>
+
+<td>${a.doctor}</td>
+
+<td>${a.date}</td>
+
+<td>${a.time}</td>
+
+<td>
+
+<span class="badge"
+style="background:
+${
+a.status === "Approved" ? "green" :
+a.status === "Rejected" ? "red" :
+"orange"
+}">
+${a.status || "Pending"}
+</span>
+
+</td>
+
+<td>
+${a.seenByDoctor ? "✔ Seen" : "⏳ Waiting"}
+</td>
+
+<td>
+
+<div class="feedback">
+
+${a.feedback
+? a.feedback
+: "No feedback from doctor yet"}
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+}
+
+});
+
+/* EMPTY */
+if(rows === ""){
+
+rows = `
+<tr>
+<td colspan="8" class="empty">
+No appointments found
+</td>
+</tr>
+`;
+
+}
+
+/* DISPLAY */
+document.getElementById("table").innerHTML = rows;
+
+}
+
+/* SEARCH */
+function searchAppointments(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let rows =
+document.querySelectorAll("#table tr");
+
+rows.forEach(row=>{
+
+let text =
+row.innerText.toLowerCase();
+
+if(text.includes(input)){
+
+row.style.display = "";
+
+}else{
+
+row.style.display = "none";
+
+}
+
+});
+
+}
+
+/* BACK */
+function goBack(){
+
+window.location.href =
+"user-dashboard.html";
+
+}
+
+/* AUTO LOAD */
+load();
+
+</script>
+
+</body>
+</html>

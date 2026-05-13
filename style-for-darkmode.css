@@ -1,0 +1,114 @@
+
+/* ================= DARK MODE ================= */
+body.dark{
+  background:#0b1220;
+  color:#e0e7ff;
+}
+
+header{
+  position:relative;
+}
+
+body.dark header{
+  background:linear-gradient(to right,#020617,#0d1b2a);
+}
+
+body.dark .nav-links a{
+  color:#c7d2fe;
+}
+
+body.dark .hero{
+  background: linear-gradient(rgba(2,6,23,0.7), rgba(2,6,23,0.7)),
+              url('hospital.jpg');
+  color:#e0e7ff;
+}
+
+body.dark .card,
+body.dark .info-box{
+  background:#111827;
+  color:#e0e7ff;
+  border:1px solid rgba(59,130,246,0.3);
+}
+
+body.dark footer{
+  background:linear-gradient(to right,#020617,#0d1b2a);
+  color:#c7d2fe;
+}
+
+/* IMAGES */
+img{
+  max-width:100%;
+}
+
+body.dark img{
+  filter:brightness(0.85);
+}
+
+/* TOGGLE */
+.dark-toggle{
+    position:absolute;
+    right:20px;
+    top:20px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:white;
+}
+
+body.dark .dark-toggle{
+    color:#c7d2fe;
+}
+
+/* SWITCH */
+.switch{
+  position:relative;
+  width:45px;
+  height:22px;
+}
+
+.switch input{
+  display:none;
+}
+
+.slider{
+  position:absolute;
+  background:#ccc;
+  border-radius:20px;
+  top:0;left:0;right:0;bottom:0;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  height:18px;width:18px;
+  left:3px;bottom:2px;
+  background:white;
+  border-radius:50%;
+  transition:0.3s;
+}
+
+input:checked + .slider{
+  background:#0d6efd;
+}
+
+input:checked + .slider:before{
+  transform:translateX(22px);
+}
+
+/* SMOOTH */
+*{
+  transition:0.3s;
+}
+body.dark .nav-links a.active{
+    background:#1e3a8a;
+    color:#e0e7ff;
+}
+
+/* add the active on link page*/
+
+.nav-links a.active{
+    background:hsl(240, 14%, 99%);
+    color:rgb(79, 16, 240);
+    border-radius:20px;
+    padding:5px 12px;
+}

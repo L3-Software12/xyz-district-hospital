@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - XYZ District Hospital</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleheader&footer.css">
+     <!-- LINK EXTERNAL CSS FOR DARKMODE  -->
+        <link rel="stylesheet" href="style-for-darkmode.css">
+        
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins';}
+body{background:#f4f8ff;color:#1e293b;}
+
+.container{width:90%;max-width:1200px;margin:auto;padding:30px 0;}
+
+h2{text-align:center;color:#0052a3;margin-bottom:20px;}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* INFO */
+.info p{margin:8px 0;}
+.info i{color:#0052a3;margin-right:8px;}
+
+/* BUTTONS */
+.action-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:8px 12px;
+    background:#00a651;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* SOCIAL */
+.social a{
+    margin-right:10px;
+    font-size:20px;
+    color:#0052a3;
+}
+
+/* FORM */
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:6px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    background:#0052a3;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* MAP */
+iframe{
+    width:100%;
+    height:220px;
+    border-radius:10px;
+}
+
+/* EXTRA BOX */
+.highlight{
+    background:#fff3cd;
+    padding:10px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+/* FEEDBACK */
+.feedback-item{
+    background:#f9fafb;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+.feedback-item h4{color:#0052a3;font-size:14px;}
+.feedback-item p{font-size:13px;}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <a href="index.html"> <img src="logos.png"> </a>
+        <h1>Welcome to XYZ District Hospital-Rwanda</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicespage.html">Services</a></li>
+           <li><a href="pharmacypage.htm">Pharmacy</a></li>
+            <li><a href="Health-Tips.html">Health Tips</a></li>
+            <li><a href="doctorpage.html">Doctors</a></li>
+
+            <li class="dropdown">
+                <a href="book-appointment.html">Appointment</a> </li>
+
+            <li><a href="login-page.html">Login</a></li>
+            <li><a href="contant-page.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+  <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+</header>
+<!-- sections -->
+
+
+
+<div class="container">
+
+<h2>Contact Us</h2>
+
+<div class="grid">
+
+<!-- LEFT -->
+<div class="card info">
+
+<p><i class="fas fa-map-marker-alt"></i> XYZ District Hospital, Rwanda (Rulindo, Cyinzuzi)</p>
+<p><i class="fas fa-phone"></i> +25081232456</p>
+<p><i class="fas fa-ambulance"></i> Ambulance: +250788999000</p>
+<p><i class="fas fa-envelope"></i> info@xyzhospital.rw</p>
+
+<a href="callpage.html" class="action-btn">📞 Call Now</a>
+<a href="mailto:info@xyzhospital.rw" class="action-btn">📧 Email Us</a>
+
+<div class="highlight">
+<b>🚨 Emergency:</b> 911 / 912 (Available 24/7)
+</div>
+
+<br>
+
+<!-- WORKING HOURS -->
+<h4>Working Hours</h4>
+<p>Mon - Fri: 08:00 - 17:00</p>
+<p>Saturday: 09:00 - 14:00</p>
+<p>Sunday: Emergency Only</p>
+
+<br>
+
+<!-- HELP LINKS -->
+<h4>Help & Support</h4>
+<p><a href="Health-Tips.html">Health Tips</a></p>
+<p><a href="book-appointment.html">Appointments</a></p>
+<p><a href="servicespage.html">Services</a></p>
+
+<br>
+
+<div class="social">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-x-twitter"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<br>
+
+<iframe src="https://maps.google.com/maps?q=rulindo%20cyinzuzi&t=&z=13&output=embed"></iframe>
+
+</div>
+
+<!-- RIGHT -->
+<div class="card">
+
+<h3>Send Message</h3>
+
+<form id="contactForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="phone" placeholder="Phone">
+<input type="text" id="subject" placeholder="Subject" required>
+<textarea id="message" placeholder="Message" required></textarea>
+
+<button type="submit">Send Message</button>
+</form>
+
+</div>
+
+</div>
+
+<!-- FEEDBACK -->
+<div class="card" style="margin-top:20px;">
+<h3>Community Feedback</h3>
+<div id="feedbackContainer"></div>
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+        <a href="#">Facebook</a><br>
+        <a href="#">Twitter/X</a><br>
+        <a href="#">WhatsApp</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+<script>
+    
+
+// SAVE MESSAGE
+document.getElementById('contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+
+    const msg = {
+        name:name.value,
+        subject:subject.value,
+        message:message.value,
+        date:new Date().toLocaleString()
+    };
+
+    let data = JSON.parse(localStorage.getItem('messages')) || [];
+    data.unshift(msg);
+
+    localStorage.setItem('messages',JSON.stringify(data));
+
+    displayFeedback();
+    this.reset();
+});
+
+// DISPLAY FEEDBACK
+function displayFeedback(){
+    const container = document.getElementById('feedbackContainer');
+    const data = JSON.parse(localStorage.getItem('messages')) || [];
+
+    container.innerHTML='';
+
+    data.slice(0,5).forEach(m=>{
+        container.innerHTML += `
+        <div class="feedback-item">
+            <h4>${m.name} (${m.subject})</h4>
+            <p>${m.message}</p>
+            <small>${m.date}</small>
+        </div>
+        `;
+    });
+}
+
+displayFeedback();
+
+</script>
+ <!-- page content -->
+
+   <script src="javascript-of-darkmde.js"></script>
+</body>
+</html>

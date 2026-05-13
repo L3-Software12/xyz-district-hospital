@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Profile - XYZ Hospital</title>
+
+<link rel="stylesheet" href="style-for-header-admin-dashboard.css">
+<link rel="stylesheet" href="styleheader&footer.css">
+<link rel="stylesheet" href="style-for-darkmode.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+}
+
+/* PROFILE CONTAINER */
+.profile-container{
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* TOP */
+.profile-top{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+/* IMAGE */
+.profile-image{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:#0d6efd;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
+    font-weight:bold;
+    overflow:hidden;
+}
+
+.profile-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* INFO */
+.profile-info h1{
+    margin:0;
+    color:#0d6efd;
+}
+
+.profile-info p{
+    margin:8px 0;
+    color:#666;
+}
+
+/* FORM */
+.profile-form{
+    margin-top:30px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#333;
+}
+
+.form-group input{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+/* BUTTONS */
+.profile-buttons{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.save-btn,
+.logout-btn{
+    padding:12px 22px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.save-btn{
+    background:#0d6efd;
+    color:white;
+}
+
+.save-btn:hover{
+    background:#084298;
+}
+
+.logout-btn{
+    background:#dc3545;
+    color:white;
+}
+
+.logout-btn:hover{
+    background:#bb2d3b;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    text-decoration:none;
+    background:#0d6efd;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+}
+
+.back-btn:hover{
+    background:#084298;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo">
+        <img src="logos.png">
+        <h1>XYZ District Hospital-Rwanda</h1>
+    </div>
+
+    <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+</header>
+
+<!-- PROFILE -->
+<div class="profile-container">
+
+<a href="admin.html" class="back-btn">⬅ Back Dashboard</a>
+
+<div class="profile-top">
+
+    <div class="profile-image" id="avatar">
+        AU
+    </div>
+
+    <div class="profile-info">
+        <h1 id="showName">Admin User</h1>
+        <p>Administrator - XYZ District Hospital</p>
+        <p id="showEmail">admin@gmail.com</p>
+    </div>
+
+</div>
+
+<!-- FORM -->
+<div class="profile-form">
+
+<div class="form-grid">
+
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="fullName">
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email">
+    </div>
+
+    <div class="form-group">
+        <label>Phone</label>
+        <input type="text" id="phone">
+    </div>
+
+    <div class="form-group">
+        <label>Upload Profile Image</label>
+        <input type="file" id="profileImage" accept="image/*">
+    </div>
+
+</div>
+
+<div class="profile-buttons">
+
+    <button class="save-btn" onclick="saveProfile()">
+        Save Profile
+    </button>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 info@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+<script>
+
+/* LOAD PROFILE */
+let admin = JSON.parse(localStorage.getItem("adminUser")) || {
+    username:"Admin User",
+    email:"admin@gmail.com",
+    phone:"+250788000000",
+    image:""
+};
+
+/* INPUTS */
+document.getElementById("fullName").value = admin.username;
+document.getElementById("email").value = admin.email;
+document.getElementById("phone").value = admin.phone;
+
+/* SHOW INFO */
+document.getElementById("showName").innerText = admin.username;
+document.getElementById("showEmail").innerText = admin.email;
+
+/* AVATAR */
+let avatar = document.getElementById("avatar");
+
+showAvatar();
+
+/* SHOW IMAGE */
+function showAvatar(){
+
+    if(admin.image){
+
+        avatar.innerHTML = `
+        <img src="${admin.image}">
+        `;
+
+    }else{
+
+        let names = admin.username.split(" ");
+
+        let initials = names[0].charAt(0).toUpperCase();
+
+        if(names.length > 1){
+            initials += names[1].charAt(0).toUpperCase();
+        }
+
+        avatar.innerText = initials;
+    }
+}
+
+/* SAVE PROFILE */
+function saveProfile(){
+
+    let file = document.getElementById("profileImage").files[0];
+
+    if(file){
+
+        let reader = new FileReader();
+
+        reader.onload = function(e){
+
+            admin = {
+                username:document.getElementById("fullName").value,
+                email:document.getElementById("email").value,
+                phone:document.getElementById("phone").value,
+                image:e.target.result
+            };
+
+            localStorage.setItem(
+                "adminUser",
+                JSON.stringify(admin)
+            );
+
+            alert("Profile updated successfully!");
+
+            location.reload();
+        };
+
+        reader.readAsDataURL(file);
+
+    }else{
+
+        admin = {
+            username:document.getElementById("fullName").value,
+            email:document.getElementById("email").value,
+            phone:document.getElementById("phone").value,
+            image:admin.image
+        };
+
+        localStorage.setItem(
+            "adminUser",
+            JSON.stringify(admin)
+        );
+
+        alert("Profile updated successfully!");
+
+        location.reload();
+    }
+}
+
+/* LOGOUT */
+function logout(){
+    localStorage.removeItem("role");
+    window.location.href = "login-admin.html";
+}
+
+</script>
+
+<script src="javascript-of-darkmde.js"></script>
+
+</body>
+</html>

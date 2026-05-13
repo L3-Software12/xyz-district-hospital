@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Settings - XYZ Hospital</title>
+<link rel="icon" type="image/" href="logos.PNG">
+<link rel="stylesheet" href="style-for-header-admin-dashboard.css">
+<link rel="stylesheet" href="styleheader&footer.css">
+<link rel="stylesheet" href="style-for-darkmode.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+}
+
+/* SETTINGS CONTAINER */
+.settings-container{
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.settings-title{
+    color:#0d6efd;
+    margin-bottom:25px;
+}
+
+/* GRID */
+.settings-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+/* CARD */
+.setting-card{
+    background:#f8f9fa;
+    padding:20px;
+    border-radius:15px;
+    border:1px solid #eee;
+}
+
+.setting-card h3{
+    margin-top:0;
+    color:#0d6efd;
+}
+
+/* INPUTS */
+.setting-card input,
+.setting-card select{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+/* BUTTONS */
+.save-btn,
+.reset-btn{
+    margin-top:15px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.save-btn{
+    background:#0d6efd;
+    color:white;
+}
+
+.save-btn:hover{
+    background:#084298;
+}
+
+.reset-btn{
+    background:#dc3545;
+    color:white;
+}
+
+.reset-btn:hover{
+    background:#bb2d3b;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    text-decoration:none;
+    background:#0d6efd;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+}
+
+.back-btn:hover{
+    background:#084298;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo">
+        <img src="logos.png">
+        <h1>XYZ District Hospital-Rwanda</h1>
+    </div>
+
+</header>
+
+<!-- SETTINGS -->
+<div class="settings-container">
+
+<a href="admin.html" class="back-btn">⬅ Back Dashboard</a>
+
+<h1 class="settings-title">Admin Settings</h1>
+
+<div class="settings-grid">
+
+    <!-- ACCOUNT -->
+    <div class="setting-card">
+
+        <h3>Account Settings</h3>
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="email" id="email" placeholder="Email">
+
+        <button class="save-btn" onclick="saveAccount()">
+            Save Account
+        </button>
+
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="setting-card">
+
+        <h3>Password Settings</h3>
+
+        <input type="password" id="oldPassword" placeholder="Old Password">
+
+        <input type="password" id="newPassword" placeholder="New Password">
+
+        <button class="save-btn" onclick="changePassword()">
+            Change Password
+        </button>
+
+    </div>
+
+    <!-- SYSTEM -->
+    <div class="setting-card">
+
+        <h3>System Settings</h3>
+
+        <select id="theme">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+        </select>
+
+        <button class="save-btn" onclick="saveTheme()">
+            Save Theme
+        </button>
+
+    </div>
+
+    <!-- DATA -->
+    <div class="setting-card">
+
+        <h3>System Data</h3>
+
+        <button class="reset-btn" onclick="clearPatients()">
+            Clear Patients
+        </button>
+
+        <button class="reset-btn" onclick="clearAppointments()">
+            Clear Appointments
+        </button>
+
+        <button class="reset-btn" onclick="clearAllData()">
+            Reset All System
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 info@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+<script>
+
+/* LOAD ACCOUNT */
+let admin = JSON.parse(localStorage.getItem("adminUser")) || {
+    username:"Admin User",
+    email:"admin@gmail.com",
+    password:"1234"
+};
+
+document.getElementById("username").value = admin.username;
+document.getElementById("email").value = admin.email;
+
+/* SAVE ACCOUNT */
+function saveAccount(){
+
+    admin.username = document.getElementById("username").value;
+
+    admin.email = document.getElementById("email").value;
+
+    localStorage.setItem(
+        "adminUser",
+        JSON.stringify(admin)
+    );
+
+    alert("Account updated successfully!");
+}
+
+/* CHANGE PASSWORD */
+function changePassword(){
+
+    let oldPass =
+    document.getElementById("oldPassword").value;
+
+    let newPass =
+    document.getElementById("newPassword").value;
+
+    if(oldPass !== admin.password){
+
+        alert("Old password incorrect!");
+        return;
+    }
+
+    admin.password = newPass;
+
+    localStorage.setItem(
+        "adminUser",
+        JSON.stringify(admin)
+    );
+
+    alert("Password changed successfully!");
+
+    document.getElementById("oldPassword").value = "";
+    document.getElementById("newPassword").value = "";
+}
+
+/* SAVE THEME */
+function saveTheme(){
+
+    let theme =
+    document.getElementById("theme").value;
+
+    localStorage.setItem("theme", theme);
+
+    if(theme === "dark"){
+        document.body.style.background = "#111";
+        document.body.style.color = "white";
+    }else{
+        document.body.style.background = "#f4f7fb";
+        document.body.style.color = "black";
+    }
+
+    alert("Theme updated!");
+}
+
+/* LOAD THEME */
+let savedTheme = localStorage.getItem("theme");
+
+if(savedTheme === "dark"){
+    document.getElementById("theme").value = "dark";
+
+    document.body.style.background = "#111";
+    document.body.style.color = "white";
+}
+
+/* CLEAR DATA */
+function clearPatients(){
+
+    if(confirm("Delete all patients?")){
+
+        localStorage.removeItem("patients");
+
+        alert("Patients deleted!");
+    }
+}
+
+function clearAppointments(){
+
+    if(confirm("Delete all appointments?")){
+
+        localStorage.removeItem("appointments");
+
+        alert("Appointments deleted!");
+    }
+}
+
+/* RESET ALL */
+function clearAllData(){
+
+    if(confirm("Reset all hospital system data?")){
+
+        localStorage.clear();
+
+        alert("System reset complete!");
+
+        window.location.href = "login-admin.html";
+    }
+}
+
+</script>
+
+<script src="javascript-of-darkmde.js"></script>
+
+</body>
+</html>

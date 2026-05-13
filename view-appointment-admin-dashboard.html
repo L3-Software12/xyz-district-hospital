@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital staff Appointments</title>
+<link rel="icon" type="image" href="logos.PNG">
+<link rel="stylesheet" href="styleheader&footer.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f4f7fb;
+}
+
+/* HEADER */
+.header{
+background:#0d6efd;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+}
+
+.back-btn{
+background:white;
+color:#0d6efd;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* CONTAINER */
+.container{
+padding:20px;
+}
+
+/* CARD */
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+overflow:auto;
+}
+
+/* TOP BAR */
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.search-box{
+width:300px;
+max-width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:10px;
+outline:none;
+}
+
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+min-width:900px;
+}
+
+table th{
+background:#0d6efd;
+color:white;
+padding:12px;
+text-align:left;
+}
+
+table td{
+padding:12px;
+border-bottom:1px solid #ddd;
+}
+
+/* STATUS */
+.status{
+padding:6px 10px;
+border-radius:8px;
+color:white;
+font-size:14px;
+font-weight:bold;
+}
+
+.pending{
+background:orange;
+}
+
+.approved{
+background:green;
+}
+
+.rejected{
+background:red;
+}
+
+/* BUTTONS */
+.action-btn{
+border:none;
+padding:8px 12px;
+border-radius:8px;
+cursor:pointer;
+color:white;
+margin:2px;
+}
+
+.approve{
+background:green;
+}
+
+.reject{
+background:red;
+}
+
+.delete{
+background:#333;
+}
+
+/* FEEDBACK */
+.feedback-box{
+margin-top:5px;
+padding:10px;
+background:#f8f9fa;
+border-radius:8px;
+font-size:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+.header{
+flex-direction:column;
+gap:10px;
+}
+
+.top-bar{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.search-box{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+       <a href="index.html"> <img src="logos.png"> </a>
+        <h1>Welcome to XYZ District Hospital-Rwanda</h1>
+    </div>
+
+<!-- HEADER -->
+<div class="header">
+
+<a href="admin.html" style="text-decoration: none;color: #f8f9fa;padding: 10px 15px;">
+    <h2> hospital staff Dashboard</h2>
+</a>
+<a href="admin.html"><button class="back-btn" onclick="goBack()">
+⬅ Back to hospital staff
+</button></a>
+</div>
+</header>
+<!-- CONTAINER -->
+<div class="container">
+
+<div class="card">
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+<h3>Appointments Management</h3>
+
+<input
+type="text"
+class="search-box"
+id="searchInput"
+placeholder="Search patient, doctor, department..."
+onkeyup="searchAppointments()"
+>
+
+</div>
+
+<!-- TABLE -->
+<table>
+
+<thead>
+<tr>
+<th>Patient</th>
+<th>Phone</th>
+<th>Department</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Reason</th>
+<th>Feedback</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="appointmentsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+<script>
+
+/* LOAD APPOINTMENTS */
+function loadAppointments(){
+
+let data =
+JSON.parse(localStorage.getItem("appointments")) || [];
+
+let table =
+document.getElementById("appointmentsTable");
+
+table.innerHTML = "";
+
+if(data.length === 0){
+
+table.innerHTML = `
+<tr>
+<td colspan="9" style="text-align:center;">
+No appointments found
+</td>
+</tr>
+`;
+
+return;
+}
+
+data.forEach((a,i)=>{
+
+let statusClass = "pending";
+
+if(a.status === "Approved"){
+statusClass = "approved";
+}
+
+if(a.status === "Rejected"){
+statusClass = "rejected";
+}
+
+table.innerHTML += `
+
+<tr>
+
+<td>${a.name}</td>
+
+<td>${a.phone}</td>
+
+<td>${a.department}</td>
+
+<td>${a.doctor}</td>
+
+<td>${a.date} ${a.time}</td>
+
+<td>${a.reason || "-"}</td>
+
+<td>
+
+<textarea
+id="feedback${i}"
+placeholder="Write feedback..."
+style="
+width:100%;
+padding:8px;
+border-radius:8px;
+border:1px solid #ddd;
+">${a.feedback || ""}</textarea>
+
+<button
+class="action-btn approve"
+onclick="saveFeedback(${i})">
+Save
+</button>
+
+</td>
+
+<td>
+<span class="status ${statusClass}">
+${a.status}
+</span>
+</td>
+
+<td>
+
+<button
+class="action-btn approve"
+onclick="approveApp(${i})">
+Approve
+</button>
+
+<button
+class="action-btn reject"
+onclick="rejectApp(${i})">
+Reject
+</button>
+
+<button
+class="action-btn delete"
+onclick="deleteApp(${i})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+/* SEARCH */
+function searchAppointments(){
+
+let input =
+document.getElementById("searchInput").value.toLowerCase();
+
+let rows =
+document.querySelectorAll("#appointmentsTable tr");
+
+rows.forEach(row=>{
+
+let text = row.innerText.toLowerCase();
+
+if(text.includes(input)){
+row.style.display = "";
+}else{
+row.style.display = "none";
+}
+
+});
+
+}
+
+/* SAVE FEEDBACK */
+function saveFeedback(i){
+
+let data =
+JSON.parse(localStorage.getItem("appointments")) || [];
+
+let feedback =
+document.getElementById(`feedback${i}`).value;
+
+data[i].feedback = feedback;
+
+localStorage.setItem(
+"appointments",
+JSON.stringify(data)
+);
+
+alert("Feedback saved");
+
+loadAppointments();
+
+}
+
+/* APPROVE */
+function approveApp(i){
+
+let data =
+JSON.parse(localStorage.getItem("appointments")) || [];
+
+data[i].status = "Approved";
+
+localStorage.setItem(
+"appointments",
+JSON.stringify(data)
+);
+
+loadAppointments();
+
+}
+
+/* REJECT */
+function rejectApp(i){
+
+let data =
+JSON.parse(localStorage.getItem("appointments")) || [];
+
+data[i].status = "Rejected";
+
+localStorage.setItem(
+"appointments",
+JSON.stringify(data)
+);
+
+loadAppointments();
+
+}
+
+/* DELETE */
+function deleteApp(i){
+
+let data =
+JSON.parse(localStorage.getItem("appointments")) || [];
+
+data.splice(i,1);
+
+localStorage.setItem(
+"appointments",
+JSON.stringify(data)
+);
+
+loadAppointments();
+
+}
+
+/* AUTO LOAD */
+window.onload = loadAppointments;
+
+</script>
+
+</body>
+</html>

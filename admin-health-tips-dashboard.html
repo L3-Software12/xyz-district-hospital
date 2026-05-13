@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>XYZ Hospital System</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+  <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="style-for-header-admin-dashboard.css">
+      <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleforhealth-tips.css">
+     <!-- LINK EXTERNAL CSS FOR DARKMODE  -->
+        <link rel="stylesheet" href="style-for-darkmode.css">
+         <!-- LINK EXTERNAL CSS FOR FOOTER ONLY  -->
+             <link rel="stylesheet" href="styleheader&footer.css">
+<style>
+/* apply here internal css*/
+/*=== print===*/
+
+
+
+</style>
+</head>
+
+<body>
+    
+<header class="header">
+    <div class="logo">
+        <a href="admin.html"><img src="logos.png"></a>
+        <h1>XYZ District Hospital-Rwanda</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="admin.html" onclick="show('dashboard',this)">Dashboard</a></li>
+            <li><a href="admin-patient-record-dashboard.html">Patients Records</a></li>
+            <li><a href="view-appointment-admin-dashboard.html" >view Appointments</a></li>
+            <li><a href="admin-pharmacy-tips-on admin.html" >Pharmacy</a></li>
+            <li><a href="admin-health-tips-dashboard.html" class="active">Health Tips</a></li>
+        </ul>
+    </nav>
+  <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    
+</header>
+<!-- sections -->
+    <!-- ADD FORM -->
+    <div class="form-box">
+        <h3>Add New Health Tip</h3>
+
+        <form id="tipForm">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="text" id="image" placeholder="Image URL (optional)">
+            <textarea id="content" placeholder="Content" required></textarea>
+            <button type="submit" class="submit">Add Tip</button>
+        </form>
+    </div>
+
+</div>
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+  <script src="javascript-of-darkmde.js"></script>
+   <!--java for record data in patient records-->
+   
+   <script src="admin-health-tips. JS.js"></script>
+<script src="javascript-for-admin-dashboard.js"></script>
+</footer>

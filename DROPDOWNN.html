@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>One Dropdown Rulindo</title>
+
+<style>
+body{
+    font-family: Arial;
+    padding:40px;
+    background:#f5f5f5;
+}
+select{
+    width:300px;
+    padding:10px;
+    border-radius:5px;
+}
+</style>
+</head>
+<body>
+
+<h3>Select Location - Rulindo</h3>
+
+<select id="location">
+    <option value="">-- Select Sector --</option>
+</select>
+
+<script>
+
+// DATA
+const data = {
+    Bushoki: {
+        Gasiza: ["Village 1","Village 2"],
+        Nyirangarama: ["Village 3","Village 4"]
+    },
+    Cyinzuzi: {
+        Rudogo: ["Village 5","Village 6"],
+        Migendezo: ["Village 7","Village 8"]
+    },
+    Base: {
+        Gitare: ["Village 9","Village 10"],
+        Rwamahwa: ["Village 11","Village 12"]
+    }
+};
+
+const select = document.getElementById("location");
+
+let step = "sector";
+let currentSector = "";
+let currentCell = "";
+
+// LOAD SECTORS
+function loadSectors(){
+    select.innerHTML = '<option value="">-- Select Sector --</option>';
+    for(let sector in data){
+        select.innerHTML += `<option value="${sector}">${sector}</option>`;
+    }
+    step = "sector";
+}
+
+// CHANGE EVENT
+select.addEventListener("change", function(){
+
+    if(step === "sector"){
+        currentSector = this.value;
+
+        if(currentSector){
+            select.innerHTML = '<option value="">-- Select Cell --</option>';
+            let cells = Object.keys(data[currentSector]);
+
+            cells.forEach(c => {
+                select.innerHTML += `<option value="${c}">${c}</option>`;
+            });
+
+            step = "cell";
+        }
+
+    } else if(step === "cell"){
+        currentCell = this.value;
+
+        if(currentCell){
+            select.innerHTML = '<option value="">-- Select Village --</option>';
+            let villages = data[currentSector][currentCell];
+
+            villages.forEach(v => {
+                select.innerHTML += `<option value="${v}">${v}</option>`;
+            });
+
+            step = "village";
+        }
+
+    } else if(step === "village"){
+        let village = this.value;
+
+        if(village){
+            alert("Selected: " + currentSector + " → " + currentCell + " → " + village);
+
+            // Subira ku ntangiriro
+            loadSectors();
+        }
+    }
+
+});
+
+// INIT
+loadSectors();
+
+</script>
+
+</body>
+</html>

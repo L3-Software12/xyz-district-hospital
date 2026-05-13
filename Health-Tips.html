@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XYZ District Hospital - Health Tips</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleheader&footer.css">
+     <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleforhealth-tips.css">
+      <!-- LINK EXTERNAL CSS FOR DARKMODE  -->
+        <link rel="stylesheet" href="style-for-darkmode.css">
+<style>
+    /* apply here internal css*/
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+       <a href="index.html"> <img src="logos.png"> </a>
+        <h1>Welcome to XYZ District Hospital-Rwanda</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicespage.html">Services</a></li>
+            <li><a href="pharmacypage.htm">Pharmacy</a></li>
+            <li><a href="Health-Tips.html" class="active">Health Tips</a></li>
+            <li><a href="doctorpage.html">Doctors</a></li>
+            <li class="dropdown">
+                <a href="book-appointment.html">Appointment</a> </li>
+
+            <li><a href="login-page.html">Login</a></li>
+            <li><a href="contant-page.html">Contact</a></li>
+        </ul>
+    </nav>
+ <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+</header>
+<!-- sections -->
+
+
+<section class="hero">
+    <h1>Health Tips</h1>
+    <p>Trusted advice from doctors and nurses</p>
+</section>
+
+<section class="container">
+
+    <div class="tips-grid" id="tipsContainer"></div>
+
+</section>
+
+<script>
+
+// DEFAULT DATA (FIXED IMAGE LINKS)
+const defaultTips = [
+{
+title:'Malaria Prevention',
+content:'Sleep under mosquito nets and remove stagnant water.',
+author:'Doctor',
+likes:0,
+image:'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000'
+},
+{
+title:'Nutrition for Children',
+content:'Eat fruits, vegetables and balanced meals.',
+author:'Nurse',
+likes:0,
+image:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000'
+},
+{
+title:'Hand Hygiene',
+content:'Wash hands with soap regularly.',
+author:'Doctor',
+likes:0,
+image:'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1000'
+},
+{
+title:'Family Planning',
+content:'Visit hospital for family planning guidance.',
+author:'Nurse',
+likes:0,
+image:'https://images.unsplash.com/photo-1581595219315-a187dd40c322?q=80&w=1000'
+},
+{
+title:'HIV/AIDS Awareness',
+content:'Get tested regularly and know your status.',
+author:'Doctor',
+likes:0,
+image:'https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80&w=1000'
+},
+{
+title:'Pregnancy Care',
+content:'Attend antenatal visits at least 4 times.',
+author:'Nurse',
+likes:0,
+image:'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1000'
+}
+];
+
+// SAVE DEFAULT
+if(!localStorage.getItem('healthTips')){
+    localStorage.setItem('healthTips',JSON.stringify(defaultTips));
+}
+let container = document.getElementById("tipsContainer");
+
+function displayUser(){
+    let tips = JSON.parse(localStorage.getItem("healthTips")) || [];
+    container.innerHTML = "";
+
+    tips.forEach((t,i)=>{
+        container.innerHTML += `
+        <div class="card">
+            <img src="${t.image}" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef'">
+
+            <h3>${t.title}</h3>
+            <p>${t.content}</p>
+            <p><b>${t.author}</b></p>
+
+            <button onclick="likeTip(${i})">❤️ ${t.likes || 0}</button>
+        </div>
+        `;
+    });
+}
+
+/* LIKE */
+function likeTip(i){
+    let tips = JSON.parse(localStorage.getItem("healthTips")) || [];
+    tips[i].likes = (tips[i].likes || 0) + 1;
+
+    localStorage.setItem("healthTips", JSON.stringify(tips));
+    displayUser();
+}
+
+/* INIT */
+displayUser();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+        <a href="#">Facebook</a><br>
+        <a href="#">Twitter/X</a><br>
+        <a href="#">WhatsApp</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+ <script src="javascript-of-darkmde.js"></script>
+</body>
+</html>

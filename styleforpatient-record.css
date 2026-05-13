@@ -1,0 +1,146 @@
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial;
+}
+
+/* ================= BODY ================= */
+body{
+    background:#f9f9f9;
+    padding:15px;
+}
+
+/* ================= TITLE ================= */
+h2{
+    text-align:center;
+    color:#0d47a1;
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+/* ================= FORM ================= */
+.form{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap:10px;
+}
+
+/* ================= INPUTS ================= */
+label{
+    font-size:12px;
+    font-weight:bold;
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+/* ================= BUTTON ================= */
+button{
+    margin-top:10px;
+    padding:10px;
+    width:100%;
+    border:none;
+    border-radius:8px;
+    background:#2196f3;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= TABLE WRAPPER (CRITICAL FIX) ================= */
+.table-container{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ================= TABLE ================= */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+
+    /* 🔥 IMPORTANT FIX */
+    min-width:1000px;
+}
+
+/* ================= HEAD ================= */
+th{
+    background:#0d47a1;
+    color:white;
+    padding:10px;
+    font-size:13px;
+    text-align:left;
+    white-space:nowrap;
+}
+
+/* ================= CELLS ================= */
+td{
+    padding:10px;
+    font-size:13px;
+    border-bottom:1px solid #eee;
+    white-space:nowrap;
+}
+
+/* hover */
+tr:hover{
+    background:#f1f7ff;
+}
+
+/* ================= SCROLL BAR ================= */
+.table-container::-webkit-scrollbar{
+    height:6px;
+}
+
+.table-container::-webkit-scrollbar-thumb{
+    background:#007bff;
+    border-radius:10px;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 600px){
+
+    body{
+        padding:8px;
+    }
+
+    h2{
+        font-size:16px;
+    }
+
+    .form{
+        padding:10px;
+    }
+
+    .form-grid{
+        grid-template-columns: 1fr;
+    }
+
+    table{
+        min-width:900px; /* 🔥 keeps structure but allows swipe */
+    }
+
+    th, td{
+        font-size:11px;
+        padding:6px;
+    }
+
+    button{
+        font-size:12px;
+        padding:8px;
+    }
+}

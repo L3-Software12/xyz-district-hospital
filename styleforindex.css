@@ -1,0 +1,354 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+/* BODY */
+body{
+    background:#f5f9ff;
+    transition:0.3s;
+}
+
+/* add code hhhhhhhhhhhhhhhhhhhhhhh ibuka hhhhhhh*/
+
+/* ================= HERO ================= */
+.hero{
+    background:linear-gradient(90deg,#0d6efd,#0a58ca);
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.hero h1{
+    font-size:40px;
+}
+
+.hero button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00ff99;
+    cursor:pointer;
+    font-size:16px;
+}
+
+/* ================= INFO BAR ================= */
+.info-bar{
+    display:flex;
+    background:#0d6efd;
+    color:white;
+}
+
+.info-box{
+    flex:1;
+    text-align:center;
+    padding:25px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.info-box i{
+    font-size:30px;
+    color:#00ffcc;
+    margin-bottom:10px;
+}
+
+.info-box:hover{
+    background:#0b5ed7;
+    transform:translateY(-5px);
+}
+/* ================= LAYOUT ================= */
+.layout{
+    display:flex;
+    gap:40px;
+    padding:40px 8%;
+    background:#f8f9fb;
+}
+
+.left, .right{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+/* ================= SECTION STYLE (NO BOX) ================= */
+.card{
+    padding-bottom:15px;
+    border-bottom:1px solid #e0e0e0;
+}
+
+/* REMOVE LAST BORDER */
+.card:last-child{
+    border-bottom:none;
+}
+
+/* ================= HEADINGS ================= */
+.card h2{
+    color:#0d6efd;
+    font-size:22px;
+    margin-bottom:10px;
+    position:relative;
+}
+
+/* small line under title */
+.card h2::after{
+    content:"";
+    display:block;
+    width:40px;
+    height:3px;
+    background:#0d6efd;
+    margin-top:5px;
+}
+
+/* ================= TEXT ================= */
+.card p{
+    color:#555;
+    line-height:1.6;
+}
+
+.card strong{
+    display:block;
+    margin-top:10px;
+    color:#0b3a82;
+}
+
+/* ================= LIST ================= */
+.card ul{
+    padding-left:20px;
+}
+
+.card ul li{
+    margin-bottom:6px;
+    color:#444;
+}
+
+/* ================= RIGHT SIDE SPECIAL ================= */
+.right .card{
+    background:white;
+    padding:15px;
+    border-radius:6px;
+}
+
+/* ================= TESTIMONIAL ================= */
+.testimonial{
+    padding:60px 8%;
+    background:white;
+    text-align:center;
+}
+
+.testimonial h2{
+    color:#0d6efd;
+    margin-bottom:40px;
+}
+
+/* container */
+.testimonial-container{
+    position:relative;
+    max-width:600px;
+    margin:auto;
+}
+
+/* cards */
+.test-card{
+    display:none;
+    transition:0.5s;
+}
+
+.test-card.active{
+    display:block;
+}
+
+/* quote */
+.quote{
+    font-size:40px;
+    color:#0d6efd;
+}
+
+/* name */
+.test-card h3{
+    margin:10px 0;
+    color:#222;
+}
+
+/* text */
+.test-card p{
+    color:#555;
+    line-height:1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .layout{
+        flex-direction:column;
+    }
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    background-size:cover;
+    background-position:center;
+}
+
+.hero h2{
+    font-size:40px;
+    background:rgba(0,0,0,0.5);
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:18px;
+    background:rgba(0,0,0,0.5);
+    padding:10px;
+    border-radius:10px;
+}
+
+.hero button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00cc66;
+    color:white;
+    cursor:pointer;
+}
+/* ================= ABOUT ================= */
+.about{
+    text-align:center;
+    padding:50px 20px;
+    background:#e6f2ff;
+}
+
+.about h2{
+    color:#0066cc;
+}
+
+.motto{
+    font-weight:bold;
+    color:#0099ff;
+    margin:10px 0;
+}
+
+
+
+
+/* ================= TESTIMONIAL ================= */
+.testimonial{
+    padding:60px 20px;
+    text-align:center;
+    background:#f1f5f9;
+}
+
+.testimonial h2{
+    margin-bottom:30px;
+    color:#0066cc;
+}
+
+/* CONTAINER */
+.testimonial-container{
+    position:relative;
+    max-width:700px;
+    margin:auto;
+}
+
+/* CARD */
+.test-card{
+    display:none;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    animation:fade 1s ease;
+}
+
+.test-card.active{
+    display:block;
+}
+
+/* TEXT */
+.quote{
+    font-size:40px;
+    color:#0099ff;
+}
+
+.test-card h3{
+    margin:10px 0;
+}
+
+.test-card p{
+    color:#555;
+    line-height:1.6;
+}
+
+/* ANIMATION */
+@keyframes fade{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* DARK MODE */
+body.dark .testimonial{
+    background:#1e293b;
+}
+
+body.dark .test-card{
+    background:#334155;
+    color:white;
+}
+
+body.dark .rating-text{
+    color:#cbd5e1;
+}
+/*apply the testmony here*/
+/* ================= HERO FADE ================= */
+.hero{
+    background-size:cover;
+    background-position:center;
+    transition: background-image 1s ease-in-out;
+}
+
+/* ================= TESTIMONIAL FADE ================= */
+.test-card{
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+    position:absolute;
+    width:100%;
+    left:0;
+}
+
+.test-card.active{
+    opacity:1;
+    position:relative;
+}
+
+/* ================= BUTTONS ================= */
+.slider-controls{
+    margin-top:20px;
+}
+
+.slider-controls button{
+    padding:8px 15px;
+    margin:5px;
+    border:none;
+    background:#0d6efd;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.slider-controls button:hover{
+    background:#0b5ed7;
+}

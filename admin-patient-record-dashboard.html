@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>XYZ Hospital System</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+  <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="style-for-header-admin-dashboard.css">
+      <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleforpatient-record.css">
+     <!-- LINK EXTERNAL CSS FOR DARKMODE  -->
+        <link rel="stylesheet" href="style-for-darkmode.css">
+         <!-- LINK EXTERNAL CSS FOR FOOTER ONLY  -->
+             <link rel="stylesheet" href="styleheader&footer.css">
+<style>
+/* apply here internal css*/
+/*=== print===*/
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+
+    #printArea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+    
+<header class="header">
+    <div class="logo">
+        <a href="admin.html"><img src="logos.png"></a>
+        <h1>XYZ District Hospital</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="admin.html" onclick="show('dashboard',this)">Dashboard</a></li>
+            <li><a href="admin-patient-record-dashboard.html" class="active">Patients Records</a></li>
+            <li><a href="view-appointment-admin-dashboard.html" >view Appointments</a></li>
+            <li><a href="admin-pharmacy-tips-on admin.html" >Pharmacy</a></li>
+            <li><a href="admin-health-tips-dashboard.html" >Health Tips</a></li>
+        </ul>
+    </nav>
+  <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    
+</header>
+<!-- sections -->
+
+<h2>Patient Management System</h2>
+<button onclick="printTable()" class="print">🖨️ Print Pharmacy-Records </button>
+<!-- FORM -->
+ <!--====== print id in div -->
+<div class="form" id="printArea">
+
+<div class="form-grid">
+
+<div>
+<label>Full Name</label>
+<input type="text" id="name">
+</div>
+
+<div>
+<label>Date of Birth</label>
+<input type="date" id="dob">
+</div>
+
+<div>
+<label>Gender</label>
+<select id="gender">
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+<div>
+<label>Blood Type</label>
+<select id="blood">
+<option value="">Select</option>
+<option>A+</option><option>A-</option>
+<option>B+</option><option>B-</option>
+<option>O+</option><option>O-</option>
+<option>AB+</option><option>AB-</option>
+</select>
+</div>
+
+<div>
+<label>Mutuelle Number</label>
+<input type="text" id="mutuelle">
+</div>
+
+<div>
+<label>Phone</label>
+<input type="text" id="phone">
+</div>
+
+<div>
+<label>XYZ location</label>
+<select id="location">
+    <option value="">-- Select Sector --</option>
+</select>
+
+</div>
+
+<div>
+<label>Condition</label>
+<select id="condition">
+<option value="">Select</option>
+<option>Malaria</option>
+<option>Diabetes</option>
+<option>Hypertension</option>
+<option>HIV/AIDS</option>
+<option>pregnancy care</option>
+<option>Hand hygiene </option>
+<option>Nutrition for children</option>
+<option>Family planning</option>
+</select>
+</div>
+
+<div>
+<label>Admission Date</label>
+<input type="date" id="admission">
+</div>
+
+<div>
+<label>Discharge Date</label>
+<input type="date" id="discharge">
+</div>
+
+<div>
+<label>Doctor</label>
+<select id="doctor">
+<option value="">Select</option>
+<option>Dr. Jean Mugabo</option>
+<option>Dr. Claire Uwimana</option>
+<option>Dr. Emmanuel Nshuti</option>
+<option>Dr. Alice Mukamana</option>
+<option>Dr. Grace Nyirahabimna </option>
+<option>Dr. Pierre Habimana  </option>
+<option>pharm. Marie Claudine</option>
+<option>Lab. Erick Nshimiyimana </option>
+<option>Dr. Solange Uwase </option>
+<option>NUtr. Innocent Niyonsaba</option>
+<option>Dr. Vestine MUkeshimana</option>
+<option>Dr. Olivier Ndayisaba</option>
+</select>
+</div>
+
+</div>
+
+<button onclick="addPatient()">➕ Save Patient</button>
+</div>
+<div class="table-container">
+<!-- TABLE -->
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Blood</th>
+<th>XYZ location</th>
+<th>Condition</th>
+<th>Admission</th>
+<th>Doctor</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="table"></tbody>
+</table>
+</div>
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+<script>
+
+// ================= LOCATION DATA =================
+const data = {
+    Bushoki: {
+        Gasiza: ["rukomo","Rwambogo","Gasiza","Nkuba"],
+        Nyirangarama: ["Yaramba","Gikombe","Gisha","Ruvumba"]
+
+    },
+    Cyinzuzi: {
+        Rudogo: ["Gasabo","Gasizi","Musenyi","Marembo","Gitabage"],
+        Migendezo: ["Nyarutovu","Munini","Nyakariro","Save","Rurinda"],
+        Mushari:["Gasekabuye","Ngarura","Nkurura","Bukongi"],
+        Mvuzo: ["","Village 12"]
+    },
+    Base: {
+        Gitare: ["Munyinya","Raro","Gasovu","Nyamugari"],
+        Rwamahwa: ["Gasabo","Gasizi","Musenyi","Marembo","Gitabage"],
+        Mugambazi: ["Muriza","nyarurembo","Gahinga","Gatwa","Ruri"]
+    }
+
+};
+
+const select = document.getElementById("location");
+
+let step = "sector";
+let currentSector = "";
+let currentCell = "";
+let finalLocation = "";
+
+// LOAD SECTORS
+function loadSectors(){
+    select.innerHTML = '<option value="">-- Select Sector --</option>';
+    for(let sector in data){
+        select.innerHTML += `<option value="${sector}">${sector}</option>`;
+    }
+    step = "sector";
+}
+
+// HANDLE CHANGE
+select.addEventListener("change", function(){
+
+    if(step === "sector"){
+        currentSector = this.value;
+
+        if(currentSector){
+            select.innerHTML = '<option value="">-- Select Cell --</option>';
+            Object.keys(data[currentSector]).forEach(c => {
+                select.innerHTML += `<option value="${c}">${c}</option>`;
+            });
+            step = "cell";
+        }
+
+    } else if(step === "cell"){
+        currentCell = this.value;
+
+        if(currentCell){
+            select.innerHTML = '<option value="">-- Select Village --</option>';
+            data[currentSector][currentCell].forEach(v => {
+                select.innerHTML += `<option value="${v}">${v}</option>`;
+            });
+            step = "village";
+        }
+
+    } else if(step === "village"){
+        let village = this.value;
+
+        if(village){
+            finalLocation = currentSector + " → " + currentCell + " → " + village;
+
+            // show final value
+            select.innerHTML = `<option selected>${finalLocation}</option>`;
+
+            step = "done";
+        }
+    }
+
+});
+
+// INIT
+loadSectors();
+
+
+// ================= ADD PATIENT =================
+function addPatient(){
+
+let name = document.getElementById("name").value;
+let dob = document.getElementById("dob").value;
+let gender = document.getElementById("gender").value;
+let blood = document.getElementById("blood").value;
+let condition = document.getElementById("condition").value;
+let admission = document.getElementById("admission").value;
+let doctor = document.getElementById("doctor").value;
+
+// VALIDATION
+if(!name || !dob || !gender || !blood || !condition || !admission || !doctor){
+    alert("Fill all fields");
+    return;
+}
+
+if(!finalLocation){
+    alert("Select full location (Sector → Cell → Village)");
+    return;
+}
+
+// CALCULATE AGE
+let age = new Date().getFullYear() - new Date(dob).getFullYear();
+
+// ADD TO TABLE
+let table = document.getElementById("table");
+
+let row = `
+<tr>
+<td>${Date.now()}</td>
+<td>${name}</td>
+<td>${age}</td>
+<td>${gender}</td>
+<td>${blood}</td>
+<td>${finalLocation}</td>
+<td>${condition}</td>
+<td>${admission}</td>
+<td>${doctor}</td>
+<td>Admitted</td>
+<td><button onclick="deleteRow(this)">Delete</button></td>
+</tr>
+`;
+
+table.innerHTML += row;
+
+// RESET FORM
+document.getElementById("name").value = "";
+document.getElementById("dob").value = "";
+document.getElementById("gender").value = "";
+document.getElementById("blood").value = "";
+document.getElementById("condition").value = "";
+document.getElementById("admission").value = "";
+document.getElementById("doctor").value = "";
+
+finalLocation = "";
+loadSectors();
+
+}
+
+
+// ================= DELETE =================
+function deleteRow(btn){
+    btn.parentElement.parentElement.remove();
+}
+
+
+
+</script>
+    
+<script>
+    
+// ================= PRINT =================
+function printTable(){
+    window.print();
+}
+</script>
+ <!-- page content -->
+
+   <script src="javascript-of-darkmde.js"></script>
+   <!--java for record data in patient records-->
+   
+   <script src="patient-records-for-admin-dashboard.js"></script>
+<script src="javascript-for-admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Appointment</title>
+<link rel="stylesheet" href="styleheader&footer.css">
+<link rel="icon" type="image" href="logos.PNG">
+<style>
+
+/* HEADER */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px 20px;
+background:#0d6efd;
+color:white;
+font-family:Arial;
+}
+
+/* BACK BUTTON */
+.back-btn{
+background:white;
+color:#0d6efd;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+width:100px;
+}
+.back-btn:hover{
+background:#e9ecef;
+}
+
+/* BODY */
+.container{
+max-width:600px;
+margin:auto;
+padding:20px;
+font-family:Arial;
+}
+
+.group{margin-top:10px;}
+
+label{
+display:block;
+margin-top:10px;
+font-weight:bold;
+}
+
+input,select,textarea,button{
+width:100%;
+padding:10px;
+margin-top:5px;
+border-radius:8px;
+border:1px solid #ddd;
+box-sizing:border-box;
+}
+
+button{
+background:#0d6efd;
+color:white;
+border:none;
+cursor:pointer;
+margin-top:15px;
+}
+
+.success{
+display:none;
+background:#d1fae5;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <!-- BACK ONLY -->
+    <a href="user-dashboard.html">
+        <button class="back-btn">⬅ Back</button>
+    </a>
+
+    <h3>Book Appointment</h3>
+
+</div>
+
+<!-- FORM -->
+<div class="container">
+<form id="form" onsubmit="bookAppointment(event)">
+
+<div class="group">
+<label>Full Name</label>
+<input type="text" id="name" required>
+</div>
+
+<div class="group">
+<label>Phone Number</label>
+<input type="text" id="phone" required>
+</div>
+
+<div class="group">
+<label>Department</label>
+<select id="department" onchange="updateDoctors()" required>
+<option value="">Select Department</option>
+<option>Outpatient (OPD)</option>
+<option>Maternity</option>
+<option>Pediatrics</option>
+<option>Pharmacy</option>
+<option>Laboratory</option>
+<option>Dentist</option>
+<option>Nutrition</option>
+<option>Emergency</option>
+</select>
+</div>
+
+<div class="group">
+<label>Doctor</label>
+<select id="doctor" required>
+<option value="">Select Doctor</option>
+</select>
+</div>
+
+<div class="group">
+<label>Date</label>
+<input type="date" id="date" required>
+</div>
+
+<div class="group">
+<label>Time</label>
+<select id="time" required>
+<option>08:00</option>
+<option>09:00</option>
+<option>10:00</option>
+<option>11:00</option>
+<option>14:00</option>
+<option>15:00</option>
+<option>16:00</option>
+</select>
+</div>
+
+<div class="group">
+<label>Reason</label>
+<textarea id="reason"></textarea>
+</div>
+
+<button type="submit">Book Appointment</button>
+
+<div class="success" id="success">✅ Saved successfully</div>
+
+</form>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+<script>
+/* ================================
+   GLOBAL LOAD
+================================ */
+function initSystem(){
+loadAppointments();
+loadPatients();
+loadCounts();
+loadLogs();
+loadMyAppointments();
+}
+/* ================================
+   DOCTORS SYSTEM
+================================ */
+const doctors = {
+"Outpatient (OPD)": ["Dr Jean Mugabo","Dr Claire Uwimana"],
+"Maternity": ["Dr Grace Nyirahabimana","Dr Emmanuel Nshuti"],
+"Pediatrics": ["Dr Alice Mukamana","Dr Pierre Habimana"],
+"Pharmacy": ["Pharm Marie Claudine"],
+"Laboratory": ["Lab Eric Nshimiyimana"],
+"Dentist": ["Dr Solange Uwase"],
+"Nutrition": ["Nutr Innocent Nyiransaba"],
+"HIV/AIDS & TB": ["Dr Vestine Mukamirwa"],
+"Emergency": ["Dr Olivier Ndayisaba"]
+};
+
+function updateDoctors(){
+let dept = document.getElementById("department").value;
+let doctor = document.getElementById("doctor");
+
+doctor.innerHTML = '<option value="">Choose Doctor</option>';
+
+if(doctors[dept]){
+doctors[dept].forEach(d=>{
+doctor.innerHTML += `<option>${d}</option>`;
+});
+}
+}
+
+function updateDoctors(){
+
+let dept = document.getElementById("department").value;
+let doctor = document.getElementById("doctor");
+
+/* clear old options */
+doctor.innerHTML = '<option value="">Choose Doctor</option>';
+
+/* load new doctors */
+if(doctors[dept]){
+doctors[dept].forEach(d=>{
+doctor.innerHTML += `<option>${d}</option>`;
+});
+}
+
+}
+/* ================================
+   BOOK APPOINTMENT (USER)
+================================ */
+function bookAppointment(e){
+e.preventDefault();
+
+let currentUser = localStorage.getItem("currentUser");
+
+if(!currentUser){
+alert("Login first");
+window.location.href="login-page.html";
+return;
+}
+
+let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+let newApp = {
+id: Date.now(),
+name: document.getElementById("name").value,
+phone: document.getElementById("phone").value,
+department: document.getElementById("department").value,
+doctor: document.getElementById("doctor").value,
+date: document.getElementById("date").value,
+time: document.getElementById("time").value,
+reason: document.getElementById("reason").value,
+user: currentUser,
+status:"Pending",
+seenByDoctor:false
+};
+
+appointments.push(newApp);
+
+localStorage.setItem("appointments", JSON.stringify(appointments));
+
+log("New appointment booked");
+
+alert("Appointment booked!");
+document.getElementById("form")?.reset();
+}
+
+/* ================================
+   ADMIN: LOAD APPOINTMENTS
+================================ */
+function loadAppointments(){
+
+let data = JSON.parse(localStorage.getItem("appointments")) || [];
+let table = document.getElementById("appointmentsTable");
+
+if(!table) return;
+
+table.innerHTML="";
+
+data.forEach((a,i)=>{
+
+table.innerHTML += `
+<tr>
+<td>${a.name}</td>
+<td>${a.phone}</td>
+<td>${a.department}</td>
+<td>${a.doctor}</td>
+<td>${a.date} ${a.time}</td>
+
+<td>
+<span style="
+padding:5px 10px;
+border-radius:8px;
+color:white;
+background:
+${a.status === 'Approved' ? 'green' :
+ a.status === 'Rejected' ? 'red' : 'orange'};">
+${a.status}
+</span>
+</td>
+
+<td>
+<button onclick="approveApp(${i})">Approve</button>
+<button onclick="rejectApp(${i})">Reject</button>
+<button onclick="deleteApp(${i})">Delete</button>
+</td>
+</tr>
+`;
+});
+}
+
+/* ================================
+   ADMIN ACTIONS
+================================ */
+
+// APPROVE
+function approveApp(i){
+let data = JSON.parse(localStorage.getItem("appointments")) || [];
+
+data[i].status = "Approved";
+data[i].seenByDoctor = true;
+
+localStorage.setItem("appointments", JSON.stringify(data));
+
+log("Appointment approved");
+refresh();
+}
+
+// REJECT
+function rejectApp(i){
+let data = JSON.parse(localStorage.getItem("appointments")) || [];
+
+data[i].status = "Rejected";
+data[i].seenByDoctor = false;
+
+localStorage.setItem("appointments", JSON.stringify(data));
+
+log("Appointment rejected");
+refresh();
+}
+
+// DELETE
+function deleteApp(i){
+let data = JSON.parse(localStorage.getItem("appointments")) || [];
+
+data.splice(i,1);
+
+localStorage.setItem("appointments", JSON.stringify(data));
+
+log("Appointment deleted");
+refresh();
+}
+
+/* ================================
+   USER: MY APPOINTMENTS
+================================ */
+function loadMyAppointments(){
+
+let currentUser = localStorage.getItem("currentUser");
+let data = JSON.parse(localStorage.getItem("appointments")) || [];
+let table = document.getElementById("myAppointments");
+
+if(!table || !currentUser) return;
+
+table.innerHTML="";
+
+data
+.filter(a => a.user === currentUser)
+.forEach(a=>{
+
+table.innerHTML += `
+<tr>
+<td>${a.name}</td>
+<td>${a.department}</td>
+<td>${a.doctor}</td>
+<td>${a.date}</td>
+<td>${a.time}</td>
+<td>${a.status}</td>
+</tr>
+`;
+});
+}
+
+/* ================================
+   PATIENTS (OPTIONAL)
+================================ */
+function loadPatients(){
+let data = JSON.parse(localStorage.getItem("patients")) || [];
+let table = document.getElementById("patientsTable");
+
+if(!table) return;
+
+table.innerHTML="";
+
+data.forEach((p,i)=>{
+
+table.innerHTML += `
+<tr>
+<td>${p.name}</td>
+<td>${p.condition}</td>
+<td>${p.status || "Pending"}</td>
+<td>
+<button onclick="approvePatient(${i})">Approve</button>
+<button onclick="deletePatient(${i})">Delete</button>
+</td>
+</tr>
+`;
+});
+}
+
+function approvePatient(i){
+let data = JSON.parse(localStorage.getItem("patients")) || [];
+data[i].status="Approved";
+localStorage.setItem("patients", JSON.stringify(data));
+log("Patient approved");
+refresh();
+}
+
+function deletePatient(i){
+let data = JSON.parse(localStorage.getItem("patients")) || [];
+data.splice(i,1);
+localStorage.setItem("patients", JSON.stringify(data));
+log("Patient deleted");
+refresh();
+}
+
+/* ================================
+   COUNTS
+================================ */
+function loadCounts(){
+
+let p = JSON.parse(localStorage.getItem("patients")) || [];
+let a = JSON.parse(localStorage.getItem("appointments")) || [];
+
+let pCount = document.getElementById("pCount");
+let aCount = document.getElementById("aCount");
+
+if(pCount) pCount.innerText = p.length;
+if(aCount) aCount.innerText = a.length;
+}
+
+/* ================================
+   ACTIVITY LOG
+================================ */
+function log(text){
+let logs = JSON.parse(localStorage.getItem("activity")) || [];
+
+logs.unshift(text + " - " + new Date().toLocaleTimeString());
+
+localStorage.setItem("activity", JSON.stringify(logs));
+
+loadLogs();
+}
+
+function loadLogs(){
+let logs = JSON.parse(localStorage.getItem("activity")) || [];
+let list = document.getElementById("activityLog");
+
+if(!list) return;
+
+list.innerHTML="";
+
+logs.slice(0,5).forEach(l=>{
+list.innerHTML += `<li>${l}</li>`;
+});
+}
+
+/* ================================
+   REFRESH ALL
+================================ */
+function refresh(){
+loadAppointments();
+loadPatients();
+loadCounts();
+loadLogs();
+loadMyAppointments();
+}
+
+/* ================================
+   AUTO INIT
+================================ */
+window.onload = initSystem;
+
+</script>
+
+</body>
+</html>

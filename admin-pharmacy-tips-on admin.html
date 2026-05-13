@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>XYZ District Hospital System</title>
+<link rel="icon" type="image/png" href="logos.png">
+
+<link rel="stylesheet" href="styleheader&footer.css">
+<link rel="stylesheet" href="style-for-pharmacypage.css">
+<link rel="stylesheet" href="style-for-darkmode.css">
+ <link rel="stylesheet" href="style-for-header-admin-dashboard.css">
+<style>
+
+@media print {
+    body * { visibility: hidden; }
+    #printArea, #printArea * { visibility: visible; }
+    #printArea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+.card{
+background:white;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#0d6efd;
+color:white;
+}
+
+button{
+padding:8px 12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.delete-btn{
+background:red;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        <a href="admin.html"><img src="logos.png"></a>
+        <h1>XYZ District Hospital-Rwanda</h1>
+    </div>
+
+  
+    <nav>
+        <ul class="nav-links">
+            <li><a href="admin.html" onclick="show('dashboard',this)">Dashboard</a></li>
+            <li><a href="admin-patient-record-dashboard.html" >Patients Records</a></li>
+            <li><a href="view-appointment-admin-dashboard.html" >view Appointments</a></li>
+            <li><a href="pharmacy-tips-on admin.html"class="active" >Pharmacy</a></li>
+            <li><a href="admin-health-tips-dashboard.html" >Health Tips</a></li>
+        </ul>
+    </nav>
+  <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    
+</header>
+<section class="pharmacy">
+
+<button onclick="printTable()">🖨️ Print</button>
+
+<h2>Pharmacy Dashboard</h2>
+
+<div class="stats">
+<div class="box">Total: <span id="total">0</span></div>
+<div class="box low">Low: <span id="lowCount">0</span></div>
+<div class="box out">Out: <span id="outCount">0</span></div>
+</div>
+
+<!-- FORM -->
+<div class="card">
+<form id="medForm">
+
+<input type="text" id="name" placeholder="Medication Name" required>
+
+<select id="category">
+<option>Painkiller</option>
+<option>Antibiotic</option>
+<option>Vitamin</option>
+</select>
+
+<input type="number" id="stock" placeholder="Stock" required>
+
+<select id="unit">
+<option>Tablet</option>
+<option>Capsule</option>
+</select>
+
+<input type="date" id="expiry">
+<input type="number" id="price" placeholder="Price">
+<input type="text" id="supplier" placeholder="Supplier">
+
+<button type="submit">Add Medicine</button>
+
+</form>
+</div>
+
+<!-- TABLE -->
+<div class="card" id="printArea">
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Stock</th>
+<th>Category</th>
+<th>Expiry</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+        <a href="#">Facebook</a><br>
+        <a href="#">Twitter/X</a><br>
+        <a href="#">WhatsApp</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div>
+
+</footer>
+
+
+
+<script>
+
+/* LOAD DATA */
+function getData(){
+return JSON.parse(localStorage.getItem("medicines")) || [];
+}
+
+/* SAVE DATA */
+function saveData(data){
+localStorage.setItem("medicines", JSON.stringify(data));
+}
+
+/* ADD MEDICINE */
+document.getElementById("medForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let data = getData();
+
+let newMed = {
+id: Date.now(),
+name: document.getElementById("name").value,
+category: document.getElementById("category").value,
+stock: Number(document.getElementById("stock").value),
+expiry: document.getElementById("expiry").value
+};
+
+data.push(newMed);
+saveData(data);
+
+this.reset();
+displayPatients();
+});
+
+/* DISPLAY */
+function displayPatients(){
+
+let data = getData();
+let table = document.getElementById("tableBody");
+
+table.innerHTML = "";
+
+let low = 0;
+let out = 0;
+
+data.forEach((m,i)=>{
+
+let status = "Normal";
+
+if(m.stock == 0){
+status = "Out";
+out++;
+}else if(m.stock < 5){
+status = "Low";
+low++;
+}
+
+table.innerHTML += `
+<tr>
+<td>${m.name}</td>
+<td>${m.stock}</td>
+<td>${m.category}</td>
+<td>${m.expiry || "-"}</td>
+<td>${status}</td>
+<td>
+<button class="delete-btn" onclick="deleteMed(${i})">Delete</button>
+</td>
+</tr>
+`;
+
+});
+
+document.getElementById("total").innerText = data.length;
+document.getElementById("lowCount").innerText = low;
+document.getElementById("outCount").innerText = out;
+}
+
+/* DELETE */
+function deleteMed(i){
+
+let data = getData();
+data.splice(i,1);
+saveData(data);
+displayPatients();
+
+}
+
+/* PRINT */
+function printTable(){
+window.print();
+}
+
+/* INIT */
+displayPatients();
+
+</script>
+<script src="javascript-of-darkmde.js"></script>
+</body>
+</html>
