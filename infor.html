@@ -1,0 +1,428 @@
+          
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Team</title>
+<link rel="icon" type="image/png" href="logos.png">
+ <!-- LINK EXTERNAL CSS -->
+    <link rel="stylesheet" href="styleheader&footer.css">
+     <!-- LINK EXTERNAL CSS FOR DARKMODE  -->
+        <link rel="stylesheet" href="style-for-darkmode.css">
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+p{
+    color: blue;
+}
+.info-image{
+    flex:1;
+    text-align:center;
+    min-width:300px;
+}
+
+.info-image img{
+    width:100%;
+    max-width:550px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    transition:0.4s;
+}
+
+.info-image img:hover{
+    transform:scale(1.03);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .info-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .info-text h1{
+        font-size:36px;
+    }
+
+    .info-buttons{
+        justify-content:center;
+    }
+}
+
+/* HERO SECTION */
+.hero-section{
+    width:100%;
+    padding:80px 8%;
+    background:linear-gradient(to right,#eef7ff,#ffffff);
+}
+
+.hero-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.hero-text{
+    flex:1;
+    min-width:300px;
+}
+
+.hero-text h1{
+    font-size:52px;
+    color:#0056b3;
+    margin-bottom:20px;
+}
+
+.hero-text p{
+    font-size:18px;
+    color:#444;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.hero-features{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+/* HERO IMAGE */
+.hero-image{
+    flex:1;
+    text-align:center;
+    min-width:400px;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:750px;   /* LARGE IMAGE */
+    height:auto;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    transition:0.4s;
+}
+
+.hero-image img:hover{
+    transform:scale(1.05);
+}
+.feature-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    text-align:center;
+    min-width:120px;
+}
+
+.feature-box h2{
+    color:#0066ff;
+    font-size:30px;
+}
+
+.feature-box span{
+    color:#555;
+    font-size:15px;
+}
+
+.hero-image{
+    flex:1;
+    text-align:center;
+    min-width:300px;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:550px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* BUTTONS */
+.info-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn-primary,
+.btn-secondary{
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:40px;
+    font-weight:bold;
+    transition:0.4s;
+}
+
+.btn-primary{
+    background:#0066ff;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#0047b3;
+}
+
+.btn-secondary{
+    border:2px solid #0066ff;
+    color:#0066ff;
+    background:white;
+}
+
+.btn-secondary:hover{
+    background:#0066ff;
+    color:white;
+}
+
+/* SERVICES */
+.services-section{
+    padding:80px 8%;
+    background:#f8fbff;
+}
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    color:#0056b3;
+    margin-bottom:50px;
+}
+
+.services-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+}
+
+.service-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.4s;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+}
+
+.service-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.service-card h2{
+    color:#0066ff;
+    margin-bottom:15px;
+}
+
+.service-card p{
+    color:#555;
+    line-height:1.6;
+}
+/* LARGE INFOGRAPHIC IMAGE */
+.large-image-card{
+    width:100%;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    margin-top:20px;
+    transition:0.4s;
+}
+
+.large-image-card:hover{
+    transform:translateY(-8px);
+}
+
+.large-image-card img{
+    width:100%;
+    height:650px;
+    object-fit:cover;
+    display:block;
+}
+
+/* CONTENT */
+.image-content{
+    padding:30px;
+    text-align:center;
+}
+
+.image-content h2{
+    font-size:32px;
+    color:#0077b6;
+    margin-bottom:15px;
+}
+
+.image-content p{
+    font-size:18px;
+    line-height:1.8;
+    color:#555;
+    margin-bottom:25px;
+}
+
+/* BUTTON */
+.image-content button{
+    padding:14px 35px;
+    border:none;
+    background:#0077b6;
+    color:white;
+    font-size:16px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.image-content button:hover{
+    background:#023e8a;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .large-image-card img{
+        height:auto;
+    }
+
+    .image-content h2{
+        font-size:26px;
+    }
+
+    .image-content p{
+        font-size:16px;
+    }
+}
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .hero-container,
+    .why-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-text h1,
+    .why-text h1{
+        font-size:36px;
+    }
+
+    .info-buttons,
+    .hero-features{
+        justify-content:center;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+       <a href="index.html"> <img src="logos.png"> </a>
+        <h1>Welcome to XYZ District Hospital-Rwanda</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" >Home</a></li>
+            <li><a href="servicespage.html">Services</a></li>
+            <li><a href="pharmacypage.htm">Pharmacy</a></li>
+            <li><a href="Health-Tips.html">Health Tips</a></li>
+            <li><a href="doctorpage.html" class="active">Doctors</a></li>
+
+            <li class="dropdown">
+                <a href="login-page.html">Appointment</a> </li>
+
+            <li><a href="login-page.html">Login</a></li>
+            <li><a href="contant-page.html">Contact</a></li>
+        </ul>
+    </nav>
+ <!-- DARK MODE -->
+    <div class="dark-toggle">
+        <span id="modeLabel">Light</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()" id="darkSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+</header>
+<!-- sections -->
+<!-- HERO / INTRO SECTION -->
+<section class="hero-section">
+<div class="large-image-card">
+
+    <img src="infor.png" alt="Hospital Infographics">
+
+    <div class="image-content">
+        <h2>Hospital Infographics</h2>
+
+        <p>
+            XYZ District Hospital provides advanced healthcare services,
+            experienced doctors, emergency support, modern treatment,
+            laboratory testing, pharmacy services, and compassionate care
+            for every patient in Rwanda.
+        </p>
+
+        <a href="inforgraphics.png">
+            <button>View Full Infographics</button>
+        </a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>About</h3>
+        <p>XYZ Hospital provides quality healthcare services in Rwanda.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📧 inforxy@xyzhospital.rw</p>
+        <p>📞 +250 788 123 456</p>
+        <p>🚨 911 / 912</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Social</h3>
+      <a href="https://facebook.com" target="_blank">
+Facebook
+</a>
+
+<br><br>
+
+<a href="https://x.com" target="_blank">
+Twitter / X
+</a>
+
+<br><br>
+
+<a href="https://wa.me/250790113184" target="_blank">
+WhatsApp
+</a>
+    </div>
+
+    <div class="footer-box map">
+        <h3>Location</h3>
+        <iframe src="https://www.google.com/maps?q=Rulindo%20Cyinzuzi&output=embed"></iframe>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    © 2026 XYZ District Hospital
+</div></footer>
