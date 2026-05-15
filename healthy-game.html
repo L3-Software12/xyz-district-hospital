@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Challenge</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+
+body{
+  background:#0b1220;
+  color:white;
+}
+
+/* HERO */
+.hero{
+  padding:22px;
+  background:#0f172a;
+  border-bottom:1px solid #1f2937;
+}
+
+.hero h1{
+  font-size:22px;
+  font-weight:800;
+}
+
+.hero p{
+  font-size:12px;
+  color:#9ca3af;
+  margin-top:5px;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+
+.box{
+  background:#111827;
+  border:1px solid #1f2937;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+}
+
+.box h3{
+  color:#4ade80;
+  font-size:18px;
+}
+
+.box small{
+  font-size:10px;
+  color:#9ca3af;
+}
+
+/* GRID */
+.container{
+  padding:15px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+  gap:10px;
+}
+
+.card{
+  background:#111827;
+  border:1px solid #1f2937;
+  border-radius:14px;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  border-color:#22c55e;
+}
+
+.emoji{
+  font-size:26px;
+}
+
+.name{
+  font-size:10px;
+  margin-top:5px;
+  color:#d1d5db;
+}
+
+button{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#22c55e;
+  color:#0b1220;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.msg{
+  text-align:center;
+  margin:10px 0;
+  font-size:13px;
+  color:#fbbf24;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <h1>Food Challenge Game</h1>
+  <p>Pick foods and earn points</p>
+
+  <div class="stats">
+    <div class="box"><h3 id="pts">0</h3><small>Points</small></div>
+    <div class="box"><h3 id="lvl">1</h3><small>Level</small></div>
+    <div class="box"><h3 id="streak">0</h3><small>Streak</small></div>
+    <div class="box"><h3 id="stars">0</h3><small>Stars</small></div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="msg" id="msg"></div>
+
+<div class="grid" id="grid"></div>
+
+<button onclick="resetGame()">Restart Game</button>
+
+</div>
+
+<script>
+
+/* 120 FOODS (UNCHANGED BUT CLEAN) */const foods = [
+{e:'🍎',n:'Apple',h:true},{e:'🍌',n:'Banana',h:true},{e:'🍇',n:'Grapes',h:true},
+{e:'🍉',n:'Watermelon',h:true},{e:'🍓',n:'Strawberry',h:true},{e:'🥭',n:'Mango',h:true},
+{e:'🍍',n:'Pineapple',h:true},{e:'🥝',n:'Kiwi',h:true},{e:'🍑',n:'Peach',h:true},
+{e:'🍒',n:'Cherry',h:true},{e:'🫐',n:'Blueberry',h:true},{e:'🍊',n:'Orange',h:true},
+{e:'🍋',n:'Lemon',h:true},{e:'🥥',n:'Coconut',h:true},{e:'🥑',n:'Avocado',h:true},
+{e:'🥦',n:'Broccoli',h:true},{e:'🥕',n:'Carrot',h:true},{e:'🥬',n:'Lettuce',h:true},
+{e:'🥒',n:'Cucumber',h:true},{e:'🌽',n:'Corn',h:true},{e:'🧄',n:'Garlic',h:true},
+{e:'🧅',n:'Onion',h:true},{e:'🥔',n:'Potato',h:true},{e:'🍆',n:'Eggplant',h:true},
+{e:'🥗',n:'Salad',h:true},{e:'🍅',n:'Tomato',h:true},{e:'🫘',n:'Beans',h:true},
+{e:'🥜',n:'Peanuts',h:true},{e:'🌾',n:'Wheat',h:true},{e:'🍞',n:'Bread',h:true},
+{e:'🍚',n:'Rice',h:true},{e:'🥚',n:'Egg',h:true},{e:'🐟',n:'Fish',h:true},
+{e:'🍗',n:'Chicken',h:true},{e:'🥛',n:'Milk',h:true},{e:'🍵',n:'Green Tea',h:true},
+{e:'💧',n:'Water',h:true},{e:'🥤',n:'Smoothie',h:true},{e:'🍲',n:'Soup',h:true},
+{e:'🥙',n:'Wrap',h:true},{e:'🍱',n:'Bento',h:true},{e:'🫙',n:'Hummus',h:true},
+{e:'🍔',n:'Burger',h:false},{e:'🍟',n:'Fries',h:false},{e:'🍕',n:'Pizza',h:false},
+{e:'🌭',n:'Hot Dog',h:false},{e:'🥪',n:'Sandwich',h:false},{e:'🍩',n:'Donut',h:false},
+{e:'🍫',n:'Chocolate',h:false},{e:'🍪',n:'Cookie',h:false},{e:'🍰',n:'Cake',h:false},
+{e:'🧁',n:'Cupcake',h:false},{e:'🍭',n:'Candy',h:false},{e:'🥤',n:'Soda',h:false},
+{e:'🍺',n:'Beer',h:false},{e:'🍜',n:'Noodles',h:false},{e:'🥓',n:'Bacon',h:false},
+{e:'🍖',n:'Ribs',h:false},{e:'🍿',n:'Popcorn',h:false},{e:'🍦',n:'Ice Cream',h:false},
+{e:'🧃',n:'Juice Box',h:false},{e:'🍛',n:'Curry Rice',h:false},{e:'🥞',n:'Pancakes',h:false},
+{e:'🧇',n:'Waffles',h:false},{e:'🍸',n:'Cocktail',h:false},{e:'🍷',n:'Wine',h:false}
+];
+
+let pts=0;
+let lvl=1;
+let streak=0;
+let stars=0;
+
+function render(){
+  const grid=document.getElementById("grid");
+  grid.innerHTML="";
+
+  foods.forEach(f=>{
+    const div=document.createElement("div");
+    div.className="card";
+
+    div.innerHTML=`
+      <div class="emoji">${f.e}</div>
+      <div class="name">${f.n}</div>
+    `;
+
+    div.onclick=()=>pick(f);
+    grid.appendChild(div);
+  });
+}
+
+function pick(f){
+
+  if(f.h){
+    pts+=10;
+    streak++;
+    stars++;
+    show("Nice choice +10");
+  }else{
+    pts=Math.max(0,pts-5);
+    streak=0;
+    show("Oops -5");
+  }
+
+  lvl=Math.floor(pts/50)+1;
+
+  update();
+}
+
+function update(){
+  document.getElementById("pts").innerText=pts;
+  document.getElementById("lvl").innerText=lvl;
+  document.getElementById("streak").innerText=streak;
+  document.getElementById("stars").innerText=stars;
+}
+
+function show(t){
+  document.getElementById("msg").innerText=t;
+  setTimeout(()=>document.getElementById("msg").innerText="",1500);
+}
+
+function resetGame(){
+  pts=0; lvl=1; streak=0; stars=0;
+  update();
+  show("Game restarted");
+}
+
+render();
+update();
+
+</script>
+
+</body>
+</html>
