@@ -266,7 +266,8 @@ if(localStorage.getItem("role") !== "admin"){
 
 <h3>Activity</h3>
 <ul id="activityLog"></ul>
-
+<h3>🚨 Emergency Alerts</h3>
+<ul id="emergencyList"></ul>
 </div>
 
 <!-- FOOTER -->
@@ -434,6 +435,15 @@ list.innerHTML="";
 logs.slice(0,5).forEach(l=>{
 list.innerHTML += `<li>${l}</li>`;
 });
+}
+/*===emegency alert===*/
+
+// update inside loadAll()
+function loadAll(){
+    loadPatients();
+    loadAppointments();
+    loadLogs();
+    loadEmergency(); // 🔥 ADD THIS
 }
 // MENU
 function toggleMenu(){
