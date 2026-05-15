@@ -13,84 +13,227 @@
         <link rel="stylesheet" href="style-for-darkmode.css">
 <style>
 /* =========================
+/* =========================
    MEDICINE SECTION
 ========================= */
 
 .medicine-section{
-padding:60px 20px;
-background:#f5f9ff;
-text-align:center;
+    padding:60px 20px;
+    background:#f5f9ff;
+    text-align:center;
 }
 
 .medicine-section h2{
-font-size:35px;
-color:#0d6efd;
-margin-bottom:10px;
+    font-size:32px;
+    color:#0d4f8b;
+    margin-bottom:10px;
 }
 
 .medicine-section p{
-color:#555;
-margin-bottom:40px;
+    color:#555;
+    margin-bottom:35px;
+    font-size:15px;
 }
 
-/* CONTAINER */
+/* =========================
+   GRID CONTAINER
+========================= */
+
 .medicine-container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-max-width:1200px;
-margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+    max-width:1100px;
+    margin:auto;
 }
 
-/* CARD */
+/* =========================
+   CARD DESIGN (MODERN)
+========================= */
+
 .medicine-card{
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
-transition:0.3s;
-padding-bottom:20px;
+    background:#f1f3f6;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+    text-align:left;
 }
 
 .medicine-card:hover{
-transform:translateY(-8px);
+    transform:translateY(-8px);
 }
 
 /* IMAGE */
 .medicine-card img{
-width:100%;
-height:220px;
-object-fit:cover;
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
 }
 
 /* TITLE */
 .medicine-card h3{
-margin-top:15px;
-font-size:24px;
-color:#0d6efd;
+    margin:18px 20px 10px;
+    font-size:22px;
+    color:#0d4f8b;
 }
 
 /* TEXT */
 .medicine-card p{
-padding:0 15px;
-margin-top:10px;
-line-height:1.6;
+    margin:0 20px;
+    font-size:15px;
+    color:#444;
+    line-height:1.6;
 }
 
 /* BUTTON */
 .medicine-card button{
-margin-top:15px;
-padding:10px 18px;
-border:none;
-background:#0d6efd;
-color:white;
-border-radius:8px;
-cursor:pointer;
-transition:0.3s;
+    margin:20px;
+    padding:12px 20px;
+    border:none;
+    background:#2b6de0;
+    color:#fff;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+    width:max-content;
 }
 
 .medicine-card button:hover{
-background:#084298;
+    background:#1a4fb5;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablet */
+@media(max-width:900px){
+    .medicine-container{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+/* Phone */
+@media(max-width:600px){
+    .medicine-container{
+        grid-template-columns:1fr;
+    }
+}
+
+/* =========================
+   POPUP DESIGN (MODERN)
+========================= */
+
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup-content{
+    position:relative;
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    width:90%;
+    max-width:420px;
+    text-align:center;
+    animation:fadeIn 0.3s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* POPUP IMAGE */
+.popup-img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+/* CLOSE BUTTON */
+.close{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:26px;
+    cursor:pointer;
+    color:#333;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{
+        transform:scale(0.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+/* POPUP */
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+/* BOX */
+.popup-content{
+    position:relative;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    width:90%;
+    max-width:400px;
+    text-align:center;
+    animation:fadeIn 0.3s;
+}
+
+/* IMAGE */
+.popup-img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+/* CLOSE */
+.close{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:26px;
+    cursor:pointer;
+    color:#333;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{transform:scale(0.7);opacity:0;}
+    to{transform:scale(1);opacity:1;}
 }
 </style>
 </head>
@@ -144,134 +287,322 @@ background:#084298;
 <div class="plants-container">
 
     <!-- PLANT 1 -->
-    <div class="plant-card">
-        <img src="ramusin.jpg" alt="Ramusin Plant">
-        <h3>Ramusin Plant</h3>
-        <p>
-            Used in traditional medicine to treat fever, stomach pain, and infections.
-            Known for its natural healing properties and immunity boosting effects.
-        </p>
-      <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-        <button style="color: hsl(216, 16%, 94%);background-color: #0d6efd;">Learn More →
+<div class="plant-card">
+    <img src="ramusin.jpg" alt="Ramusin Plant">
+    <h3>Ramusin Plant</h3>
+    <p>
+        Used in traditional medicine to treat fever, stomach pain, and infections.
+        Known for its natural healing properties and immunity boosting effects.
+    </p>
 
-        </button></a>
+    <button onclick="openPopup1()" 
+    style="color:#fff;background:#0d6efd;">
+        Learn More →
+    </button>
+</div>
+<!-- POPUP -->
+<div id="popup1" class="popup">
+
+    <div class="popup-content">
+
+        <!-- CLOSE BUTTON -->
+        <span class="close" onclick="closePopup1()">&times;</span>
+
+        <!-- IMAGE -->
+        <img src="ramusin.jpg" alt="Ramusin Plant" class="popup-img">
+
+        <h2>Ramusin Plant Details</h2>
+
+        <p>
+            Ramusin plant is widely used in traditional healing.
+            It helps in:
+        </p>
+
+        <ul>
+            <li>Treating cough and flu</li>
+            <li>Reducing fever</li>
+            <li>Improving digestion</li>
+            <li>Boosting immunity</li>
+        </ul>
+
+        <p>
+            It is natural, safe, and commonly used in Rwanda herbal medicine.
+        </p>
+
     </div>
+
+</div>
 
     <!-- PLANT 2 -->
-    <div class="plant-card">
-        <img src="inside.jpg" alt="Healing Plant">
-        <h3>Cures Herbal Plant</h3>
-        <p>
-            A powerful medicinal plant used for detoxification, wound healing,
-            and boosting body strength naturally.
-        </p>
-     <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-        <button  style="color: hsl(216, 16%, 94%);background-color: #0d6efd;">Learn More →
+<div class="plant-card">
+    <img src="inside.jpg" alt="Healing Plant">
+    <h3>Cures Herbal Plant</h3>
+    <p>
+        A powerful medicinal plant used for detoxification, wound healing,
+        and boosting body strength naturally.
+    </p>
 
-        </button>
-    </a>
-    </div>
-
-    <!-- EXTRA PLANT (ADDED) -->
-    <div class="plant-card">
-        <img src="stock.jpg" alt="Natural Medicine">
-        <h3>Aloe Vera Plant</h3>
-        <p>
-            Helps in skin healing, burns treatment, and improving digestion health.
-        </p>
-        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-            <button  style="color: hsl(216, 16%, 94%);background-color: #0d6efd;">Learn More →
-
-            </button></a>
-    </div>
-
+    <button onclick="openPopup2()" 
+    style="color:#fff;background:#0d6efd;">
+        Learn More →
+    </button>
 </div>
+<!--popup2-->
+<!-- POPUP 2 -->
+<div id="popup2" class="popup">
 
-</section>
-<!-- MEDICINES SECTION -->
-<section class="medicine-section">
+    <div class="popup-content">
 
-<h2>💊 Available Medicines</h2>
-<p>
-Find common medicines available at XYZ District Hospital Pharmacy.
-</p>
+        <span class="close" onclick="closePopup2()">&times;</span>
 
-<div class="medicine-container">
+        <img src="inside.jpg" class="popup-img" alt="Healing Plant">
 
-    <!-- MEDICINE 1 -->
-    <div class="medicine-card">
-
-        <img src="paracetamol.jpg" alt="Paracetamol">
-
-        <h3>Paracetamol</h3>
+        <h2>Cures Herbal Plant Details</h2>
 
         <p>
-            Used to reduce fever and relieve pain such as headaches,
-            muscle pain, and flu symptoms.
+            This herbal plant is used in traditional medicine for:
         </p>
 
-        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-            <button>View Details →</button>
-        </a>
+        <ul>
+            <li>Detoxifying the body</li>
+            <li>Healing wounds faster</li>
+            <li>Boosting body strength</li>
+            <li>Improving blood circulation</li>
+        </ul>
+
+        <p>
+            It is a natural treatment widely used in African herbal medicine.
+        </p>
 
     </div>
 
-    <!-- MEDICINE 2 -->
-    <div class="medicine-card">
+</div><!-- EXTRA PLANT (ADDED) -->
+<div class="plant-card">
+    <img src="stock.jpg" alt="Natural Medicine">
+    <h3>Aloe Vera Plant</h3>
+    <p>
+        Helps in skin healing, burns treatment, and improving digestion health.
+    </p>
 
-        <img src="amoxicillin.jpg" alt="Amoxicillin">
+    <button onclick="openPopup7()" 
+    style="color:#fff;background:#0d6efd;">
+        Learn More →
+    </button>
+</div>
+<!-- POPUP 7 -->
+<div id="popup7" class="popup">
 
-        <h3>Amoxicillin</h3>
+    <div class="popup-content">
 
-        <p>
-            Antibiotic medicine used to treat bacterial infections
-            like throat infection and pneumonia.
-        </p>
+        <span class="close" onclick="closePopup7()">&times;</span>
 
-        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-            <button>View Details →</button>
-        </a>
+        <img src="stock.jpg" class="popup-img" alt="Aloe Vera">
 
-    </div>
-
-    <!-- MEDICINE 3 -->
-    <div class="medicine-card">
-
-        <img src="Vitamin C.jpg" alt="Vitamin C">
-
-        <h3>Vitamin C</h3>
-
-        <p>
-            Helps improve body immunity and protects the body
-            against common infections.
-        </p>
-
-        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-            <button>View Details →</button>
-        </a>
-
-    </div>
-
-    <!-- MEDICINE 4 -->
-    <div class="medicine-card">
-
-        <img src="Cough Syrup.jpg" alt="Cough Syrup">
-
-        <h3>Cough Syrup</h3>
+        <h2>Aloe Vera Plant Details</h2>
 
         <p>
-            Used to treat dry cough, chest irritation,
-            and flu-related throat pain.
+            Aloe Vera is a natural healing plant used for:
         </p>
 
-        <a href="https://medlineplus.gov/cough.html?utm_source=chatgpt.com">
-            <button>View Details →</button>
-        </a>
+        <ul>
+            <li>Skin healing</li>
+            <li>Burn treatment</li>
+            <li>Improving digestion</li>
+            <li>Moisturizing skin naturally</li>
+        </ul>
+
+        <p>
+            It is widely used in natural and cosmetic medicine.
+        </p>
 
     </div>
 
 </div>
 
+</section><!-- MEDICINE 1 -->
+<div class="medicine-card">
+
+    <img src="paracetamol.jpg" alt="Paracetamol">
+
+    <h3>Paracetamol</h3>
+
+    <p>
+        Used to reduce fever and relieve pain such as headaches,
+        muscle pain, and flu symptoms.
+    </p>
+
+    <button onclick="openPopup3()">
+        View Details →
+    </button>
+
+</div>
+<!-- POPUP 3 -->
+<div id="popup3" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close" onclick="closePopup3()">&times;</span>
+
+        <img src="paracetamol.jpg" class="popup-img" alt="Paracetamol">
+
+        <h2>Paracetamol Details</h2>
+
+        <p>
+            Paracetamol is a common medicine used for:
+        </p>
+
+        <ul>
+            <li>Reducing fever</li>
+            <li>Relieving headaches</li>
+            <li>Reducing muscle pain</li>
+            <li>Treating flu symptoms</li>
+        </ul>
+
+        <p>
+            Always follow doctor's instructions before using this medicine.
+        </p>
+
+    </div>
+
+</div>
+<!-- MEDICINE 2 -->
+<div class="medicine-card">
+
+    <img src="amoxicillin.jpg" alt="Amoxicillin">
+
+    <h3>Amoxicillin</h3>
+
+    <p>
+        Antibiotic medicine used to treat bacterial infections
+        like throat infection and pneumonia.
+    </p>
+
+    <button onclick="openPopup4()">
+        View Details →
+    </button>
+
+</div>
+<!-- POPUP 4 -->
+<div id="popup4" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close" onclick="closePopup4()">&times;</span>
+
+        <img src="amoxicillin.jpg" class="popup-img" alt="Amoxicillin">
+
+        <h2>Amoxicillin Details</h2>
+
+        <p>
+            Amoxicillin is an antibiotic used for:
+        </p>
+
+        <ul>
+            <li>Treating throat infections</li>
+            <li>Pneumonia treatment</li>
+            <li>Bacterial infections</li>
+            <li>Ear infections</li>
+        </ul>
+
+        <p>
+            Always use under doctor's prescription.
+        </p>
+
+    </div>
+
+</div>
+<!-- MEDICINE 3 -->
+<div class="medicine-card">
+
+    <img src="Vitamin C.jpg" alt="Vitamin C">
+
+    <h3>Vitamin C</h3>
+
+    <p>
+        Helps improve body immunity and protects the body
+        against common infections.
+    </p>
+
+    <button onclick="openPopup5()">
+        View Details →
+    </button>
+
+</div>
+<!-- POPUP 5 -->
+<div id="popup5" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close" onclick="closePopup5()">&times;</span>
+
+        <img src="Vitamin C.jpg" class="popup-img" alt="Vitamin C">
+
+        <h2>Vitamin C Details</h2>
+
+        <p>
+            Vitamin C is an essential nutrient used for:
+        </p>
+
+        <ul>
+            <li>Boosting immunity</li>
+            <li>Protecting against infections</li>
+            <li>Improving skin health</li>
+            <li>Helping wound healing</li>
+        </ul>
+
+        <p>
+            It is found in fruits and supplements.
+        </p>
+
+    </div>
+
+</div>
+<!-- MEDICINE 4 -->
+<div class="medicine-card">
+
+    <img src="Cough Syrup.jpg" alt="Cough Syrup">
+
+    <h3>Cough Syrup</h3>
+
+    <p>
+        Used to treat dry cough, chest irritation,
+        and flu-related throat pain.
+    </p>
+
+    <button onclick="openPopup6()">
+        View Details →
+    </button>
+
+</div>
+<!-- POPUP  medecine 6 -->
+<div id="popup6" class="popup">
+
+    <div class="popup-content">
+
+        <span class="close" onclick="closePopup6()">&times;</span>
+
+        <img src="Cough Syrup.jpg" class="popup-img" alt="Cough Syrup">
+
+        <h2>Cough Syrup Details</h2>
+
+        <p>
+            Cough Syrup is used for:
+        </p>
+
+        <ul>
+            <li>Treating dry cough</li>
+            <li>Relieving chest irritation</li>
+            <li>Soothing throat pain</li>
+            <li>Helping flu symptoms</li>
+        </ul>
+
+        <p>
+            Always follow dosage instructions from a doctor or pharmacist.
+        </p>
+
+    </div>
+
+</div>
 </section>
 
 <!-- FOOTER -->
@@ -327,6 +658,75 @@ WhatsApp
    <script src="javascript-of-darkmde.js"></script>
    <!-- external javascript -->
     <script src="pharmacy-tips.js"></script>
-   
+<script>
+
+function openPopup1(){
+    document.getElementById("popup1").style.display="flex";
+}
+
+function closePopup1(){
+    document.getElementById("popup1").style.display="none";
+}
+
+/* CLICK OUTSIDE TO CLOSE */
+window.onclick = function(event){
+    let popup = document.getElementById("popup1");
+    if(event.target === popup){
+        popup.style.display = "none";
+    }
+}
+
+
+function openPopup2(){
+    document.getElementById("popup2").style.display="flex";
+}
+
+function closePopup2(){
+    document.getElementById("popup2").style.display="none";
+}
+
+function openPopup3(){
+    document.getElementById("popup3").style.display="flex";
+}
+
+function closePopup3(){
+    document.getElementById("popup3").style.display="none";
+}
+
+function openPopup4(){
+    document.getElementById("popup4").style.display="flex";
+}
+
+function closePopup4(){
+    document.getElementById("popup4").style.display="none";
+}
+
+function openPopup5(){
+    document.getElementById("popup5").style.display="flex";
+}
+
+function closePopup5(){
+    document.getElementById("popup5").style.display="none";
+}
+
+
+function openPopup6(){
+    document.getElementById("popup6").style.display="flex";
+}
+
+function closePopup6(){
+    document.getElementById("popup6").style.display="none";
+}
+
+
+function openPopup7(){
+    document.getElementById("popup7").style.display="flex";
+}
+
+function closePopup7(){
+    document.getElementById("popup7").style.display="none";
+}
+
+</script>
 </body>
 </html>
