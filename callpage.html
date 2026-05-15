@@ -130,7 +130,21 @@ function startCall(){
     let audio = document.getElementById("ringtone");
 
     audio.play().then(()=>{
+
         document.getElementById("status").innerText = "Calling...";
+
+        // 🔴 SEND EMERGENCY TO ADMIN
+        let emergency = {
+            name: "Unknown Patient",
+            time: new Date().toLocaleTimeString(),
+            date: new Date().toLocaleDateString(),
+            status: "ACTIVE"
+        };
+
+        let emergencies = JSON.parse(localStorage.getItem("emergencyCalls")) || [];
+        emergencies.unshift(emergency);
+        localStorage.setItem("emergencyCalls", JSON.stringify(emergencies));
+
     }).catch(()=>{
         alert("Please click first to allow sound");
     });
