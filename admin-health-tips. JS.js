@@ -80,5 +80,5 @@ function deleteTip(i){
     displayUserSync();
 }
 
-/* INIT */
+/* INIT *==/
 displayAdmin();
