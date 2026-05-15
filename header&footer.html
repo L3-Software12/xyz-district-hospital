@@ -4,224 +4,239 @@
 <meta charset="UTF-8">
 <title>XYZ District Hospital System</title>
 
-<style>
+<style><style>
+
+/* BODY NYAMUKURU */
 body{
-    margin:0;
-    font-family:Arial;
-    background:#f4f8ff;
+    margin:0; /* ikuraho umwanya (space) uri hanze ya page */
+    font-family:Arial; /* ihindura font ikoreshwa ku nyandiko */
+    background:#f4f8ff; /* ishyiraho ibara ry'inyuma rya page */
 }
 
+/* UNIVERSAL SELECTOR */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    margin:0; /* ikuraho margin ku bintu byose */
+    padding:0; /* ikuraho space yo imbere (padding) */
+    box-sizing:border-box; /* ibara ubunini harimo padding na border */
+    font-family:Arial, sans-serif; /* font rusange ikoreshwa hose */
 }
 
+/* BODY YA KABIRI (OVERWRITE) */
 body{
-    background:#f5f9ff;
+    background:#f5f9ff; /* ihindura ibara ry’inyuma */
 }
 
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
-    background:linear-gradient(90deg,#0066cc,#0099ff);
-    color:white;
-    padding:15px 20px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    background:linear-gradient(90deg,#0066cc,#0099ff); /* gradient (ibara rihinduka) */
+    color:white; /* ibara ry’inyandiko */
+    padding:15px 20px; /* space imbere (hejuru/epfo 15px, iburyo/ibumoso 20px) */
+    box-shadow:0 4px 10px rgba(0,0,0,0.15); /* igicucu cya header */
 }
 
-/* LOGO */
+/* LOGO CONTAINER */
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    justify-content:left;
-    margin-bottom:10px;
+    display:flex; /* ikoresha flexbox */
+    align-items:center; /* ihuza ibintu ku murongo umwe (vertical center) */
+    gap:10px; /* intera hagati y’ibintu */
+    justify-content:left; /* ibishyira ibumoso */
+    margin-bottom:10px; /* intera hasi */
 }
 
+/* IMAGE YA LOGO */
 .logo img{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:white;
-    
+    width:50px; /* ubugari bw’ifoto */
+    height:50px; /* uburebure */
+    border-radius:50%; /* igira ifoto izengurutse */
+    background:white; /* inyuma y’ifoto */
 }
 
+/* TITLE YA LOGO */
 .logo h1{
-    font-size:30px;
-    text-align: center;
+    font-size:30px; /* ubunini bw’inyandiko */
+    text-align:center; /* ihuza inyandiko hagati */
 }
 
-/* NAVIGATION CONTAINER */
+/* NAVIGATION */
 nav{
-    display:flex;
-    flex-wrap:wrap; /* 👉 allows 2 lines */
-    justify-content:center; /* 👉 center links */
-    gap:10px;
-    max-width:900px;
-    margin:auto;
+    display:flex; /* flexbox */
+    flex-wrap:wrap; /* yemera ko ibintu bijya ku murongo wa kabiri */
+    justify-content:center; /* ibishyira hagati */
+    gap:10px; /* intera hagati */
+    max-width:900px; /* ubugari ntiburenga 900px */
+    margin:auto; /* ibishyira hagati ya page */
 }
-/* NAV LIST */
+
+/* LIST YA NAV */
 .nav-links{
-    list-style:none;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-    max-width:1000px;
-    margin:auto;
+    list-style:none; /* ikuraho bullets (utudomo) */
+    display:flex; /* flexbox */
+    flex-wrap:wrap; /* yemera lines nyinshi */
+    justify-content:center; /* hagati */
+    gap:10px; /* intera */
+    max-width:1000px; /* ubugari ntiburenga */
+    margin:auto; /* hagati */
 }
 
-/* LINKS */
+/* ITEM ZA NAV */
 .nav-links li{
-    position:relative;
+    position:relative; /* ikoreshwa ku dropdown */
 }
 
+/* LINK */
 .nav-links a{
-    display:block;
-    text-decoration:none;
-    color:white;
-    padding:5px 10px;
-    border-radius:10px;
-    background:rgba(255,255,255,0.1);
-    transition:0.3s;
-    font-size:14px;
+    display:block; /* igira link nk’agakarito */
+    text-decoration:none; /* ikuraho underline */
+    color:white; /* ibara ry’inyandiko */
+    padding:5px 10px; /* space imbere */
+    border-radius:10px; /* imfuruka zizengurutse */
+    background:rgba(255,255,255,0.1); /* background yoroheje */
+    transition:0.3s; /* igihe cya animation */
+    font-size:14px; /* ubunini bw’inyandiko */
 }
 
-/* HOVER */
+/* HOVER EFFECT */
 .nav-links a:hover{
-    background:white;
-    color:#0066cc;
+    background:white; /* ihindura background */
+    color:#0066cc; /* ihindura ibara ry’inyandiko */
 }
 
-/* DROPDOWN */
+/* DROPDOWN MENU */
 .dropdown-menu{
-    display:none;
-    position:absolute;
-    top:40px;
-    left:0;
-    background:white;
-    min-width:180px;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    z-index:100;
+    display:none; /* ihisha dropdown mbere */
+    position:absolute; /* iyishyira ku mwanya runaka */
+    top:40px; /* iva hejuru ho 40px */
+    left:0; /* itangirira ibumoso */
+    background:white; /* ibara ry’inyuma */
+    min-width:180px; /* ubugari ntibujya munsi ya 180px */
+    border-radius:10px; /* corners */
+    overflow:hidden; /* ihisha ibirenze */
+    box-shadow:0 5px 15px rgba(0,0,0,0.2); /* igicucu */
+    z-index:100; /* iyishyira hejuru y’ibindi */
 }
 
 /* DROPDOWN LINKS */
 .dropdown-menu li a{
-    color:#333;
-    background:white;
-    padding:10px;
+    color:#333; /* ibara ry’inyandiko */
+    background:white; /* background */
+    padding:10px; /* space */
 }
 
+/* HOVER YA DROPDOWN */
 .dropdown-menu li a:hover{
-    background:#f0f8ff;
+    background:#f0f8ff; /* ibara rihinduka */
 }
 
 /* SHOW DROPDOWN */
 .dropdown:hover .dropdown-menu{
-    display:block;
+    display:block; /* igaragaza dropdown */
 }
-<!-- end headers -- >
-/* HERO */
+
+
+/* ================= HERO ================= */
 .hero{
-    height:90vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-    background-size:cover;
-    background-position:center;
+    height:90vh; /* uburebure (90% ya screen) */
+    display:flex; /* flexbox */
+    flex-direction:column; /* ibintu bijya hasi */
+    justify-content:center; /* hagati vertical */
+    align-items:center; /* hagati horizontal */
+    text-align:center; /* inyandiko hagati */
+    color:white; /* ibara */
+    background-size:cover; /* image yuzuza neza */
+    background-position:center; /* hagati */
 }
 
+/* HERO TITLE */
 .hero h2{
-    font-size:45px;
-    background:rgba(0,0,0,0.5);
-    padding:12px 20px;
-    border-radius:10px;
+    font-size:45px; /* ubunini */
+    background:rgba(0,0,0,0.5); /* background yijimye */
+    padding:12px 20px; /* space */
+    border-radius:10px; /* corners */
 }
 
+/* HERO TEXT */
 .hero p{
-    margin-top:15px;
-    font-size:20px;
-    background:rgba(0,0,0,0.5);
-    padding:10px;
-    border-radius:10px;
+    margin-top:15px; /* space hejuru */
+    font-size:20px; /* ubunini */
+    background:rgba(0,0,0,0.5); /* background */
+    padding:10px; /* space */
+    border-radius:10px; /* corners */
 }
 
+/* HERO BUTTON */
 .hero button{
-    margin-top:20px;
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:#00cc66;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+    margin-top:20px; /* space */
+    padding:12px 25px; /* space imbere */
+    border:none; /* nta murongo */
+    border-radius:25px; /* izengurutse */
+    background:#00cc66; /* ibara */
+    color:white; /* inyandiko */
+    font-size:16px; /* ubunini */
+    cursor:pointer; /* ikora cursor ya hand */
 }
 
+/* BUTTON HOVER */
 .hero button:hover{
-    background:#00994d;
+    background:#00994d; /* ihindura ibara */
 }
-
-
-
-
-
-
 
 
 /* ================= FOOTER ================= */
 .footer{
-    background:#0b3a82;
-    color:white;
-    padding:40px 20px;
+    background:#0b3a82; /* ibara ry’inyuma */
+    color:white; /* inyandiko */
+    padding:40px 20px; /* space */
 }
 
+/* GRID */
 .footer-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    max-width:1100px;
-    margin:auto;
+    display:grid; /* grid layout */
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); /* columns zihinduka */
+    gap:20px; /* intera */
+    max-width:1100px; /* ubugari */
+    margin:auto; /* hagati */
 }
 
+/* TITLE */
 .footer-box h3{
-    color:#00d4ff;
-    margin-bottom:10px;
+    color:#00d4ff; /* ibara */
+    margin-bottom:10px; /* space */
 }
 
+/* TEXT NA LINKS */
 .footer-box p,
 .footer-box a{
-    font-size:14px;
-    color:#e5e7eb;
-    text-decoration:none;
-    line-height:1.6;
+    font-size:14px; /* ubunini */
+    color:#e5e7eb; /* ibara */
+    text-decoration:none; /* nta underline */
+    line-height:1.6; /* intera y’imirongo */
 }
 
+/* HOVER LINK */
 .footer-box a:hover{
-    color:#00ffcc;
+    color:#00ffcc; /* ibara rihinduka */
 }
 
+/* MAP */
 .map iframe{
-    width:100%;
-    height:140px;
-    border-radius:10px;
-    border:none;
+    width:100%; /* ubugari bwose */
+    height:140px; /* uburebure */
+    border-radius:10px; /* corners */
+    border:none; /* nta border */
 }
 
+/* FOOTER HASI */
 .footer-bottom{
-    text-align:center;
-    margin-top:20px;
-    padding-top:10px;
-    border-top:1px solid rgba(255,255,255,0.2);
-    font-size:13px;
-    color:#cbd5e1;
+    text-align:center; /* hagati */
+    margin-top:20px; /* space */
+    padding-top:10px; /* space imbere */
+    border-top:1px solid rgba(255,255,255,0.2); /* umurongo hejuru */
+    font-size:13px; /* ubunini */
+    color:#cbd5e1; /* ibara */
 }
+
+</style>
 
 </style>
 </head>
